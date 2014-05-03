@@ -1,4 +1,5 @@
 #!/bin/bash
+mkdir -p ~/.local/bin
 mkdir -p ~/.backup
 mv ~/.profile ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.backup
 
@@ -23,3 +24,4 @@ cp .sdirs ~/
 cp .vimrc ~/
 cp .vim/ ~/
 cp .jCodeCollector/ ~/
+echo 'java -jar /media/data/Tools/jcodecollector/jcodecollector.jar -Dawt.useSystemAAFontSettings=on' >> ~/.local/bin/jcc
