@@ -5,7 +5,7 @@ git clone https://github.com/rballen/dotfiles.git
 cd dotfiles
 
 mkdir -p ~/.backup
-cp ~/.profile ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.backup
+mv ~/.profile ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.backup
 
 # arch, manjaro or ubuntu, debian, elementaryOS, xubuntu (voyager)
 if [ -f /etc/debian_version ] ; then
