@@ -1,0 +1,26 @@
+file:///home/ra/bin bin
+file:///media/data data
+file:///media/resources resources
+file:///media/stage stage
+file:///home/ra ra
+file:///home/.local local
+file:///media/data/home/ra ra-common
+file:///media/resources/Books Books
+file:///home/ra/Downloads Downloads
+file:///home/ra/Documents Documents
+file:///home/ra/Dropbox Dropbox
+file:///media/resources/Graphics Graphics
+file:///home/ra/Music Music
+file:///home/ra/Pictures Pictures
+file:///home/ra/Projects Projects
+file:///home/ra/public_html public_html
+file:///home/ra/rballen  rballen
+file:///home/ra/Trippy-Gods Vedas
+file:///media/data/Tools Tools
+file:///media/resources/Tutorials Tutorials
+file:///home/ra/Videos Videos
+file:///home/ra/Dropbox/Media/wallpaper wallpaper
+file:///srv/www www
+smb://media-net/ media-net
+smb://media-net/dropbox/ media-net-dropbox
+dav://rballen@owncloud.robuntu.com/remote.php/webdav

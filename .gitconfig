@@ -1,0 +1,28 @@
+[user]
+	name = rballen
+	email = robert.burch.allen@gmail.com
+[github]
+	user = rballen
+[core]
+    excludesfile = /home/ra/.gitignore
+    editor = /usr/bin/vim
+    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol   
+[color]
+    ui = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    new = green bold
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+    gl = log
