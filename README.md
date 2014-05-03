@@ -36,6 +36,11 @@ cp .gemrc/ ~/
 cp .httrack.ini ~/
 cp .sdirs ~/
 cp .vimrc ~/
-cp .vim/ ~/
-cp .jCodeCollector/ ~/
+cp -r .vim/ ~/
+cp -r .jCodeCollector/ ~/
+cp -r js-snippets/ ~/.js-snippets
+
+echo 'java -jar /media/data/Tools/jcodecollector/jcodecollector.jar -Dawt.useSystemAAFontSettings=on' >> ~/.local/bin/jcc
+chmod +x ~/.local/bin/jcc
+
 ```
