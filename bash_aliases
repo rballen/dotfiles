@@ -32,7 +32,6 @@ alias listnew='ls -ltc'
 alias nc='--color=no'
 
 # app aliases
-alias ls-npm="ls $(npm config get prefix)/lib/node_modules"
 alias vi='vim'
 alias less='less -r'
 
@@ -77,9 +76,6 @@ alias greset='git fetch --all;git reset --hard origin/master'
 alias rip='wget -E -H -k -K -p -U mozilla'      # THE wget that everyone wants :)
 alias cw='compass watch'
 alias cc='compass compile'
-alias ni='npm install'
-alias nid='npm install --save-dev'
-alias nis='npm install --save'
 alias bi='bower install'
 alias bid='bower install --save-dev'
 alias bis='bower install --save'
