@@ -13,12 +13,12 @@ chmod  +x dotfiles.sh
 ### dotfiles.sh contents
 ```sh
 #!/bin/bash
+mkdir -p ~/.local/bin
 mkdir -p ~/.backup
 mv ~/.profile ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.backup
 
 git clone https://github.com/rballen/dotfiles.git
 cd dotfiles
-
 # arch, manjaro or ubuntu, debian, elementaryOS, xubuntu (voyager)
 if [ -f /etc/debian_version ] ; then
    cp .profile ~/
