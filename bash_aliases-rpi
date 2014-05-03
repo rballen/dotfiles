@@ -1,0 +1,58 @@
+# rballen
+# ~/.bash_aliases
+# wget -O ~/.bash_aliases https://raw.github.com/rballen/dotfiles/master/.bash_aliases-rpi
+########################################
+
+# list all aliases on system
+alias whatalias="alias -p | cut -d= -f1 | cut -d' ' -f2"
+alias sourceme="source ~/.profile"      #reload
+
+# ls 
+alias ll='ls -Alh'                            # l = long list, A = not . or .., h = human readable size
+alias ls='ls -F'                              # F = append */=>@| to entries(file,dir,sym link)
+alias lsd='ls -d */'
+#alias l='ls -CF'
+alias listnew='ls -ltc'
+alias nocolor='ls --color=never'
+alias less='less -r'  
+alias lsnc='ls --color=no'
+alias lsdnc='ls -d --color=no  */'
+
+# app aliases
+alias vi='vim'
+alias free='free -m'
+alias grep='grep -ir'                       
+
+
+# lil helpers
+alias space2dash="rename 'y/ /-/' *"           # convert space to dash
+alias rip='wget -E -H -k -K -p -U mozilla'      # THE wget that everyone wants :)
+
+
+# ssh and scp
+alias sshro='ssh robuntuadmin@robuntu.com'
+alias scpme='scp $1 ra@acer.ra.net:/home/ra'
+
+# debugging
+alias whatport='netstat -tulpn'
+
+# typos
+alias cd..='cd ..'
+alias ..='cd ..'
+alias clonse='clone'
+
+# package management for ubuntu
+alias update='sudo apt-get update'
+alias upgrade='sudo apt-get upgrade'
+alias install='sudo apt-get install'
+alias uninstall='apt-get purge'    
+alias clean='sudo apt-get clean'
+alias autoremove='sudo apt-get autoremove'
+alias add='sudo add-apt-repository'
+alias search='apt-cache search'
+alias listpack='dpkg --list'
+alias backuppack='dpkg --get-selections > /media/resources/Dropbox/packages-lsb_release.txt'
+alias restorepack='dpkg --set-selections < /media/resources/Dropbox/packages-lsb_release.txt'
+
+
+echo '.bash_aliases'

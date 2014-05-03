@@ -1,0 +1,130 @@
+# git config --global core.excludesfile ~/.gitignore_global
+
+# personal
+stage/
+.viminfo
+
+# misc
+public/
+app/
+npm-debug.log
+
+# logs
+*.log
+
+# android
+*.apk
+*.ap_
+
+# java
+*.class
+*.jar
+*.war
+*.ear
+
+# maven
+target/
+*.releaseBackup
+
+# node
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+pids
+logs
+results
+node_modules
+
+
+# jekyll
+_site/
+
+# vagrant
+.vagrant/
+
+# svn
+.svn/
+
+# sass
+*.sass-cache
+
+# mac
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# archives
+*.7z
+*.jar
+*.rar
+*.zip
+*.gz
+*.bzip
+*.bz2
+*.xz
+*.lzma
+*.cab
+*.iso
+*.tar
+*.dmg
+*.xpi
+*.gem
+*.egg
+*.deb
+*.rpm
+*.msi
+*.msm
+*.msp
+
+# cloud9
+.c9revisions
+
+# netbeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# intellij/webstorm
+.idea/
+*.ipr
+*.iws
+*.iml
+out/
+.idea_modules/
+
+# eclipse
+*.pydevproject
+.metadata
+.gradle
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.externalToolBuilders/
+*.launch
+.cproject
+.buildpath
+.texlipse
+
+# sublime-text
+*.sublime-workspace
