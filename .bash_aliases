@@ -40,7 +40,7 @@ alias less='less -r'
 #alias egrep='egrep -ir --color=auto'
 
 #terminal helpers
-alias myterm="xfce4-terminal --tab --title=home --tab --title=kc --tab --title webdev --tab --title=pi"
+alias myterm="xfce4-terminal --tab --title=home --tab --title=robuntu --tab --title webdev --tab --title=pi"
 
 # files i reference or update a lot
 alias editkey="subl /media/data/Dropbox/Documents/data/keyboard-shortcuts.html"
