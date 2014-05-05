@@ -1,5 +1,6 @@
+#!/bin/bash
 ####################################
-# ~/.bash_functions - somewhat useful collection of functions
+# ~/.bash_functions - somewhat useful collection of functions - sill working on the media related so don't use them
 #
 # @TODO finish linting check with http://www.shellcheck.net/
 # git clone https://github.com/rballen/dotfiles.git
@@ -51,8 +52,8 @@ function overview () {
 
   echo "extract( file ) ---> extracts any archive"
   echo "extractToFolder ( )  ---> created folder based on name and extract into it"
-  echo "md2html (file ) ---> convert file to markdown"
-  echo "all2html ( ) ---> convert all files in dir to markdown"
+  echo "getHtml (file ) ---> convert md to html"
+  echo "getAllHtml ( ) ---> convert all md files in dir to html"
   echo "encrypt ( file) ---> encrypt file using gpg"
   echo "decrypt ( file) ---> decrypt file using gpg"
   echo "lowercase ( ) ---> mv's all files in dir to lowercase"
@@ -242,15 +243,15 @@ function ripdvd () {
   sudo dd if=/dev/cdrom of=/media/data/Videos/$1.iso
 }
 
-# convert single file to markdown
-function md2html() {
+# convert markdown to html
+function getHtml() {
   cat "$1" | marked > ${1%.*}.html
 }
 
-# converts all markdown (*.md or *.markdown) into html.
+# converts all markdown (*.md or *.markdown) in . to html.
 # filename: ${file%.*}
 # ext= ${file##*.}
-function all2html() {
+function getAllHtml() {
     shopt -s nullglob
 
     for f in *.md
@@ -291,7 +292,7 @@ function thumbs-med (){
   done
 }
 
-echo '.bash_functions'
+echo 'bash_functions'
 
 #####
 # scripts from https://github.com/gotbletu
