@@ -43,11 +43,13 @@ alias less='less -r'
 alias myterm="xfce4-terminal --tab --title=home --tab --title=robuntu --tab --title webdev --tab --title=pi"
 
 # files i reference or update a lot
-alias editkey="subl /media/data/Dropbox/Documents/data/keyboard-shortcuts.html"
-alias openkey="firefox /media/data/Dropbox/Documents/data/keyboard-shortcuts.html"
-alias editcommands="subl /media/data/Dropbox/Documents/data/commands.md"
-alias editnotes="subl /media/data/Dropbox/Documents/data/notes.txt"
-alias editro="subl /media/data/Dropbox/Documents/data/roResources.json"
+alias editkey="subl /media/data/Dropbox/Documents/documents/keyboard-shortcuts.html"
+alias openkey="firefox /media/data/Dropbox/Documents/documents/keyboard-shortcuts.html"
+alias editbash="subl /media/data/Dropbox/Documents/documents/bash.md"
+alias editcommands="subl /media/data/Dropbox/Documents/documents/commands.md"
+alias editnotes="subl /media/data/Dropbox/Documents/documents/notes.txt"
+alias editro="subl /media/data/Dropbox/Documents/documents/roResources.json"
+alias editwebdev="subl /media/data/Dropbox/Documents/documents/webdev-resources.md"
 
 # sublime text
 alias sublrballen="subl --project /media/data/Dropbox/Apps/sublime/rballen.sublime-project"
@@ -146,4 +148,4 @@ fi
 
 
 
-echo '.bash_aliases'
+echo 'bash_aliases'
