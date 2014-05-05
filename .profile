@@ -12,7 +12,6 @@
 
 [[ -r ~/.bashrc ]] && . ~/.bashrc
 
-
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -22,6 +21,7 @@ fi
 if [ -d "$HOME/.local/bin" ]; then
    PATH="$HOME/.local/bin:$PATH"
 fi
+
 
 # system variables
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle
@@ -39,14 +39,14 @@ export CATALINA_HOME=/media/data/Tools/tomcat-8.0.3
 export PHANTOM_HOME=/media/data/Tools/phantomjs-1.9.2-linux-x86_64
 #export GOROOT=$HOME/Projects/go
 export GOPATH=/usr/bin/go
-JSHINT=/home/ra/.nvm/v0.10.28/bin/jshint
+#JSHINT=/home/ra/.nvm/v0.10.28/bin/jshint
 
 # export PATH
-PATH=$NVM_BIN:$PHANTOM_HOME/bin:$NODE_WEBKIT:$JAVA_HOME/bin:$M2_HOME/bin:$ROO_HOME/bin:$ANT_HOME/bin:$JSHINT:$PATH
+PATH=$PHANTOM_HOME/bin:$NODE_WEBKIT:$JAVA_HOME/bin:$M2_HOME/bin:$ROO_HOME/bin:$ANT_HOME/bin:$PATH
+#PATH=$JSHINT:$PATH
 #PATH=$ANDROID_HOME/bin:$ANDROID_PTOOLS/bin:$PATH
 #PATH=$VAGRANT_HOME/bin:$PATH
 #PATH="$DROID_HOME/bin:$DROID_HOME/sdk/tools:$DROID_HOME/sdk/platform-tools:$PATH"
 
 
-
-echo '.profile'
+echo 'profile'
