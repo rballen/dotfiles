@@ -7,31 +7,39 @@
 #
 # sudo groupadd robuntu -g 1111; sudo groupadd dev -g 1112; # add new groups
 # sudo usermod -aG robuntu,dev,fuse $USER;   # add $USER to these groups
-# sudo usermod -g dev $USER;                 # change $USER's primary group to dev 
+# sudo usermod -g dev $USER;                 # change $USER's primary group to dev
 # ########################################
 # umask 022
 
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
-#shopt -s globstar # **  in a pathname expansion matches all files and zero or more dirs, subdirs
-#shopt -s cdspell
-shopt -s checkwinsize      #update the values of LINES and COLUMNS.
-# shopt -s cmdhist
-# shopt -s dotglob
-# shopt -s expand_aliases
-# shopt -s extglob
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
 shopt -s histappend
-# shopt -s hostcomplete
-# shopt -s nocaseglob
 
-export HISTSIZE=10000
-export HISTFILESIZE=${HISTSIZE}
-export HISTCONTROL=ignoreboth   # don't put duplicate lines or lines starting with space history.
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+HISTCONTROL=ignoreboth   # don't put duplicate lines or lines starting with space history.
+
 export EDITOR=vim
 export VISUAL=vim
 export BROWSER=google-chrome
 
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -53,12 +61,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-   # We have color support; assume it's compliant with Ecma-48
-   # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-   # a case would tend to support setf rather than setaf.)
-   color_prompt=yes
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
     else
-   color_prompt=
+	color_prompt=
     fi
 fi
 
@@ -96,20 +104,19 @@ fi
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 
-
-# enable programmable completion features
+# enable tab completion 
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+    PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] $ '
 fi
 
-#PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\] @ \[\033[0;36m\]\h  \w\[\033[0;32m\]\n\[\033[0;32m\]└─\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] ▶\[\033[0m\] '
-
-PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] $ '
-
+## ALIAS & FUNCTION DEFINITIONS
+[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
+[[ -f ~/.bash_functions ]] && . ~/.bash_functions
 
 function parse_git_branch {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
@@ -118,9 +125,11 @@ function parse_git_branch {
 PS1="\[\e[32m\]\$(parse_git_branch)\[\e[34m\]\h:\W \$ \[\e[m\]"
 export PS1
 
-export SASSPATH=.
+export SASSPATH=.    # sublime
 
 # https://github.com/huyng/bashmarks
+# git clone git://github.com/huyng/bashmarks.git; cd bashmarks; make install
+# cd ~/ ; wget https://raw.githubusercontent.com/rballen/dotfiles/master/.sdirs
 . ~/.local/bin/bashmarks.sh
 
 ## RUBY & GEMS
@@ -130,23 +139,14 @@ export SASSPATH=.
 # echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
 # echo '. "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
 #
-. "$HOME/.rvm/scripts/rvm"
+. $HOME/.rvm/scripts/rvm
 
 
-## NVM, NPM & NODEJS
-# git clone https://github.com/creationix/nvm.git ~/.nvm
-# . ~/.nvm/nvm.sh;
-# nvm ls-remote; nvm install v0.10.26; nvm use 0.10.26; nvm alias default 0.10.26
-#
-[[ -s "$HOME/.nvm/nvm.sh" ]] && . "$HOME/.nvm/nvm.sh"
-[[ -r "$HOME/.nvm/bash_completion" ]] && . "$HOME/.nvm/bash_completion"
-#export node_path="$HOME/.nvm/v0.11.6/bin/node"
+# NVM NODEJS - added to path on xubuntu 14.04 and v0.10.28
+export NVM_DIR="$HOME/.nvm"
+source $HOME/.nvm/nvm.sh
+[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+PATH=$NVM_BIN:$PATH
 
 
-## ALIAS & FUNCTION DEFINITIONS
-[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
-[[ -f ~/.bash_functions ]] && . ~/.bash_functions
-
-
-echo '.bashrc'
-
+echo "bashrc"
