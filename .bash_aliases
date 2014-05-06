@@ -43,13 +43,14 @@ alias less='less -r'
 alias myterm="xfce4-terminal --tab --title=home --tab --title=robuntu --tab --title webdev --tab --title=pi"
 
 # files i reference or update a lot
-alias editkey="subl /media/data/Dropbox/Documents/documents/keyboard-shortcuts.html"
-alias openkey="firefox /media/data/Dropbox/Documents/documents/keyboard-shortcuts.html"
+alias editkeys="subl /media/data/Dropbox/Documents/documents/keyboard-shortcuts.html"
+alias openkeys="firefox /media/data/Dropbox/Documents/documents/keyboard-shortcuts.html"
 alias editbash="subl /media/data/Dropbox/Documents/documents/bash.md"
 alias editcommands="subl /media/data/Dropbox/Documents/documents/commands.md"
 alias editnotes="subl /media/data/Dropbox/Documents/documents/notes.txt"
 alias editro="subl /media/data/Dropbox/Documents/documents/roResources.json"
 alias editwebdev="subl /media/data/Dropbox/Documents/documents/webdev-resources.md"
+alias editemmet="subl /media/data/Dropbox/Documents/documents/emmet.md"
 
 # sublime text
 alias sublrballen="subl --project /media/data/Dropbox/Apps/sublime/rballen.sublime-project"
@@ -78,9 +79,9 @@ alias greset='git fetch --all;git reset --hard origin/master'
 alias rip='wget -E -H -k -K -p -U mozilla'      # THE wget that everyone wants :)
 alias cw='compass watch'
 alias cc='compass compile'
-alias bi='bower install'
+alias bs='bower search'
 alias bid='bower install --save-dev'
-alias bis='bower install --save'
+alias nid='npm install --save-dev'
 
 # media
 alias ytlist="youtube-dl -F"
