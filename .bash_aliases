@@ -43,7 +43,7 @@ alias less='less -r'
 alias myterm="xfce4-terminal --tab --title=ro-angular-seed --tab --title=robuntu --tab --title=ui --tab --title=top"
 
 # files i reference or update a lot
-alias editkeys="subl /media/data/Dropbox/Documents/documents/keyboard-shortcuts.html"
+alias editkeys="haroopad /media/data/Dropbox/Documents/documents/keyboard-shortcuts.md"
 alias openkeys="firefox /media/data/Dropbox/Documents/documents/keyboard-shortcuts.html"
 alias editbash="subl /media/data/Dropbox/Documents/documents/bash.md"
 alias editcommands="subl /media/data/Dropbox/Documents/documents/commands.md"
