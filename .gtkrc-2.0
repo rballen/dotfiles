@@ -1,0 +1,26 @@
+ style "xfdesktop-icon-view"
+{
+        XfdesktopIconView::label-alpha = 0
+        XfdesktopIconView::ellipsize-icon-labels = 0
+        fg[NORMAL] = "#9E9E9E"
+        fg[SELECTED] = "#ffffff"
+        fg[ACTIVE] = "#ffffff"
+}
+widget_class "*XfdesktopIconView*" style "xfdesktop-icon-view"
+
+style "panel"
+{
+        fg[NORMAL] = "#FFFFFF"
+        fg[SELECTED] = "#FFFFFF"
+        fg[ACTIVE] = "#FFFFFF"
+        fg[PRELIGHT] = "#FFFFFF"
+}
+widget_class "*Panel*" style "panel"
+
+gtk-menu-popup-delay = 0
+gtk-menu-popdown-delay = 0
+gtk-menu-bar-popup-delay = 0
+gtk-enable-animations = 0
+gtk-timeout-expand = 0
+gtk-timeout-initial = 0
+gtk-timeout-repeat = 0
