@@ -51,6 +51,7 @@ alias editnotes="subl /media/data/Dropbox/Documents/documents/notes.txt"
 alias editro="subl /media/data/Dropbox/Documents/documents/roResources.json"
 alias editwebdev="subl /media/data/Dropbox/Documents/documents/webdev-resources.md"
 alias editemmet="subl /media/data/Dropbox/Documents/documents/emmet.md"
+alias ffn='firefox-trunk -no-remote -P "nightly"'
 
 # sublime text
 alias sublrballen="subl --project /media/data/Dropbox/Apps/sublime/rballen.sublime-project"
