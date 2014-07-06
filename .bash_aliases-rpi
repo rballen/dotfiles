@@ -43,6 +43,7 @@ alias clonse='clone'
 
 # package management for ubuntu
 alias update='sudo apt-get update'
+alias updatepi='sudo rpi-update'
 alias upgrade='sudo apt-get upgrade'
 alias install='sudo apt-get install'
 alias uninstall='apt-get purge'    
