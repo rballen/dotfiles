@@ -52,11 +52,13 @@ alias editro="subl /media/data/Dropbox/Documents/documents/roResources.json"
 alias editwebdev="subl /media/data/Dropbox/Documents/documents/webdev-resources.md"
 alias editemmet="subl /media/data/Dropbox/Documents/documents/emmet.md"
 alias ffn='firefox-trunk -no-remote -P "nightly"'
+alias monitor='gnome-system-monitor'
+
 
 # sublime text
 alias sublrballen="subl --project /media/data/Dropbox/Apps/sublime/rballen.sublime-project"
 alias subldata="subl --project /media/data/Dropbox/Apps/sublime/data.sublime-project"
-alias sublrobuntu="subl --project /media/data/Dropbox/Apps/sublime/robuntu.sublime-project"
+alias sublrobuntu="subl --project /media/data/Dropbox/Apps/sublime/robuntu.local.sublime-project"
 
 
 # utils better-->https://github.com/benlinton/bash-slugify
