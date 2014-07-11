@@ -19,6 +19,7 @@ alias newalias="cp /media/data/Project/github/rballen/dotfiles/.bash_aliases ~/"
 alias whatport='netstat -tulpn'
 alias free='free -m'
 alias myports='netstat –lp --inet'
+alias memhog='ps -elf|awk "{print \$10, \$3, \$4, \$15, \$16}"|sort -nr|head'
 
 # distro
 alias whichdistro='cat /etc/*-release'
