@@ -99,6 +99,7 @@ alias jcc='java -jar /media/data/Tools/jcodecollector/jcodecollector.jar -Dawt.u
 
 # ssh and scp
 alias sshpi='ssh ra@192.168.1.5'
+alias sshpiwww='ssh www-data@192.168.1.5'
 alias sshro='ssh robuntuadmin@robuntu.com'
 alias scppi="scp $1 ra@192.168.1.5:/home/ra"
 alias sshom='ssh ombuntuadmin@ombuntu.com'
