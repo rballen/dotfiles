@@ -20,6 +20,7 @@ alias whatport='netstat -tulpn'
 alias free='free -m'
 alias myports='netstat –lp --inet'
 alias memhog='ps -elf|awk "{print \$10, \$3, \$4, \$15, \$16}"|sort -nr|head'
+alias stats='dstat -cdnpmgs --top-bio --top-cpu --top-mem'
 
 # distro
 alias whichdistro='cat /etc/*-release'
