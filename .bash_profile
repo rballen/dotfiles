@@ -28,7 +28,7 @@ export ANT_HOME=/media/data/Tools/ant-1.9.1
 export NODE_WEBKIT=/media/data/Tools/node-webkit
 export MAVEN_OPTS="-Xms128m -Xmx1024m"
 export M2_HOME=/media/data/Tools/apache-maven-3.2.3
-export ROO_HOME=/media/data/Tools/spring-roo-1.2.5
+export ROO_HOME=/media/data/Tools/spring-roo-1.3.1
 export PHANTOM_HOME=/media/data/Tools/phantomjs-1.9.7-linux-x86_64
 export PYTHON=python2
 
