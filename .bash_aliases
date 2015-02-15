@@ -86,11 +86,12 @@ alias cc='compass compile'
 alias bs='bower search'
 alias bid='bower install --save-dev'
 alias nid='npm install --save-dev'
-alias ls-npm='ls /home/ra/.nvm/v0.10.28/lib/node_modules/'  #  npm ls -g should be this and not every package
+alias ls-npm='ls ~/.nvm/versions/node/v0.12.0/lib/node_modules/'  #  npm ls -g should be this and not every package
 # media
-alias ytlist="youtube-dl -F"
-alias yt="youtube-dl -f 18"
-alias ytm="youtube-dl $1 --extract-audio --audio-format mp3"
+alias ytl="youtube-dl -F"   # list available formats
+alias yt="youtube-dl -f 18" # best for mp4
+alias ytm="youtube-dl $1 --extract-audio --audio-format mp3"  #extract mp3
+
 
 
 # jars
