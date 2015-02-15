@@ -33,7 +33,7 @@ export PHANTOM_HOME=/media/data/Tools/phantomjs-1.9.7-linux-x86_64
 export PYTHON=python2
 
 PATH=$JAVA_HOME/bin:$M2_HOME/bin:$ROO_HOME/bin:$ANT_HOME/bin:$PATH
-PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PHANTOM_HOME/bin:$NODE_WEBKIT/bin:$PATH
+PATH=$PHANTOM_HOME/bin:$NODE_WEBKIT/bin:$PATH
 
 
 echo 'bash_profile'
