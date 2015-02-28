@@ -139,7 +139,7 @@ export SASSPATH=.    # sublime
 # echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
 # echo '. "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
 #
-. $HOME/.rvm/scripts/rvm
+#. $HOME/.rvm/scripts/rvm
 
 
 # NVM NODEJS - added to path on xubuntu 14.04 and v0.10.28
