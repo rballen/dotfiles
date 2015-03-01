@@ -127,6 +127,9 @@ export PS1
 
 export SASSPATH=.    # sublime
 
+# helps with accessibility bus console errors
+export NO_AT_BRIDGE=1
+
 # https://github.com/huyng/bashmarks
 # git clone git://github.com/huyng/bashmarks.git; cd bashmarks; make install
 # cd ~/ ; wget https://raw.githubusercontent.com/rballen/dotfiles/master/.sdirs
