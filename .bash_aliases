@@ -100,14 +100,6 @@ alias ytm="youtube-dl $1 --extract-audio --audio-format mp3"  #extract mp3
 alias piggydb='java -jar /media/data/Tools/piggydb-standalone/piggydb-standalone.jar'
 alias jcc='java -jar /media/data/Tools/jcodecollector/jcodecollector.jar -Dawt.useSystemAAFontSettings=o'
 
-# ssh and scp
-alias sshpi='ssh ra@192.168.1.5'
-alias ssho='ssh ra@192.168.1.10'
-alias sshpiwww='ssh www-data@192.168.1.5'
-alias sshro='ssh robuntuadmin@robuntu.com'
-alias scppi="scp $1 ra@192.168.1.5:/home/ra"
-alias sshom='ssh ombuntuadmin@ombuntu.com'
-alias sshkey="cat ~/.ssh/id_rsa.pub | pbcopy && echo 'Copied to clipboard.'"
 
 # typos
 alias cd..='cd ..'
