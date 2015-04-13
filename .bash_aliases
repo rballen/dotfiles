@@ -29,7 +29,7 @@ alias whichdistro='cat /etc/*-release'
 # ls
 alias ll='ls -Alh'                       # l = long list, A = not . or .., h = human readable size
 alias ls='ls -F --color=auto'            # F = append */=>@| to entries(file,dir,sym link)
-alias lsc='ls | ws-l'                    # count files
+alias lsc='ls | wc -l'                    # count files
 alias lsd='ls -d */'
 #alias l='ls -CF'
 alias listnew='ls -ltc'
