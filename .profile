@@ -24,21 +24,22 @@ fi
 
 
 # system variables
-export JAVA_HOME=/usr/lib/jvm/java-7-oracle
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 export ANT_HOME=/media/data/Tools/ant-1.9.1
-export NODE_WEBKIT=/media/data/Tools/node-webkit/bin
+export NODE_WEBKIT=/media/data/Tools/nwjs-v0.12.1-linux-x64
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=512m"
-export M2_HOME=/media/data/Tools/maven-3.0.4
-export ROO_HOME=/media/data/Tools/spring-roo-1.2.4.
+export M2_HOME=/media/data/Tools/maven-3.2.3
+export ROO_HOME=/media/data/Tools/spring-roo-1.3.1
 export CATALINA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=256m"
-export CATALINA_HOME=/media/data/Tools/tomcat-8.0.3
+export CATALINA_HOME=/media/data/Tools//apache-tomcat-8.0.15
 #export ATLAS_HOME=/media/data/Tools/atlassian-plugin-sdk
 # export VAGRANT_HOME=/opt/vagrant/bin
 #ANDROID_HOME=/media/data/Tools/android-sdk-linux/tools
 #ANDROID_PTOOLS=/media/data/Tools/android-sdk-linux/platform-tools
-export PHANTOM_HOME=/media/data/Tools/phantomjs-1.9.2-linux-x86_64
-#export GOROOT=$HOME/Projects/go
-export GOPATH=/usr/bin/go
+export PHANTOM_HOME=/media/data/Tools/phantomjs-1.9.8-linux-x86_64
+export GOROOT=$HOME/bin/go
+export PATH=$PATH:$GOROOT/bin
+export GOPATH=$GOROOT/bin
 #JSHINT=/home/ra/.nvm/v0.10.28/bin/jshint
 
 # export PATH
