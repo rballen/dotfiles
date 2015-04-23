@@ -112,7 +112,7 @@ if [ -f /etc/debian_version ] ; then
    # xfce voyager (le mellieur) , elementaryOS aliases
 
    alias sourceme="source ~/.profile"      #reload
-   alias server="google-chrome http://$HOSTNAME:4000; python -m SimpleHTTPServer 3000"
+   alias server="google-chrome http://$HOSTNAME:3000; python -m SimpleHTTPServer 3000"
    alias install='sudo apt install'
    alias update='sudo apt update'
    alias upgrade='sudo apt upgrade'
