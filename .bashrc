@@ -153,3 +153,4 @@ PATH=$NVM_BIN:$PATH
 
 
 echo "bashrc"
+export NVM_DIR="$HOME/.nvm"
