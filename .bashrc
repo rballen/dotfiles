@@ -136,13 +136,7 @@ export NO_AT_BRIDGE=1
 . ~/.local/bin/bashmarks.sh
 
 ## RUBY & GEMS
-# \curl -L https://get.rvm.io | bash -s stable --ignore-dotfiles
-# source ~/.rvm/scripts/rvm
-# rvm list known; rvm install 2.0.0 --autolibs=2; <install missing packages>; rvm install 2.0.0  --autolibs=2;
-# echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
-# echo '. "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
-#
-#. $HOME/.rvm/scripts/rvm
+PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 
 
 # NVM NODEJS - added to path on xubuntu 14.04 and v0.10.28
