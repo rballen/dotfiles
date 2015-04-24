@@ -50,4 +50,4 @@ PATH=$PHANTOM_HOME/bin:$NODE_WEBKIT:$JAVA_HOME/bin:$M2_HOME/bin:$ROO_HOME/bin:$A
 #PATH="$DROID_HOME/bin:$DROID_HOME/sdk/tools:$DROID_HOME/sdk/platform-tools:$PATH"
 
 
-echo 'profile'
+echo 'bash_profile'
