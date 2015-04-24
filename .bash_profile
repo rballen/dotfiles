@@ -24,7 +24,7 @@ fi
 
 
 # system variables
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export JAVA_HOME=/usr/lib/jvm/default
 export ANT_HOME=/media/data/Tools/ant-1.9.1
 export NODE_WEBKIT=/media/data/Tools/nwjs-v0.12.1-linux-x64
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=512m"
