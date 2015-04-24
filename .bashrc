@@ -137,6 +137,7 @@ export NO_AT_BRIDGE=1
 
 ## RUBY & GEMS
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+export GEM_HOME=$(ruby -e 'print Gem.user_dir')
 
 
 # NVM NODEJS - added to path on xubuntu 14.04 and v0.10.28
