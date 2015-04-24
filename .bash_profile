@@ -37,13 +37,11 @@ export CATALINA_HOME=/media/data/Tools//apache-tomcat-8.0.15
 #ANDROID_HOME=/media/data/Tools/android-sdk-linux/tools
 #ANDROID_PTOOLS=/media/data/Tools/android-sdk-linux/platform-tools
 export PHANTOM_HOME=/media/data/Tools/phantomjs-1.9.8-linux-x86_64
-export GOROOT=$HOME/bin/go
-export PATH=$PATH:$GOROOT/bin
-export GOPATH=$GOROOT/bin
+export GOPATH=/media/data/Projects/go
 #JSHINT=/home/ra/.nvm/v0.10.28/bin/jshint
 
 # export PATH
-PATH=$PHANTOM_HOME/bin:$NODE_WEBKIT:$JAVA_HOME/bin:$M2_HOME/bin:$ROO_HOME/bin:$ANT_HOME/bin:$PATH
+PATH=$PHANTOM_HOME/bin:$NODE_WEBKIT:$JAVA_HOME/bin:$M2_HOME/bin:$ROO_HOME/bin:$ANT_HOME/bin:$GOPATH/bin:$PATH
 #PATH=$JSHINT:$PATH
 #PATH=$ANDROID_HOME/bin:$ANDROID_PTOOLS/bin:$PATH
 #PATH=$VAGRANT_HOME/bin:$PATH
