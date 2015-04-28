@@ -104,7 +104,7 @@ fi
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 
-# enable tab completion 
+# enable tab completion
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -137,7 +137,6 @@ export NO_AT_BRIDGE=1
 
 ## RUBY & GEMS
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-export GEM_HOME=$(ruby -e 'print Gem.user_dir')
 
 
 # NVM NODEJS - added to path on xubuntu 14.04 and v0.10.28
@@ -146,6 +145,8 @@ source $HOME/.nvm/nvm.sh
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 PATH=$NVM_BIN:$PATH
 
+# docker
+. ~/.docker-compose
 
 echo "bashrc"
-export NVM_DIR="$HOME/.nvm"
+
