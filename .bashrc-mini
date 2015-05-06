@@ -86,7 +86,7 @@ alias egrep='egrep -ir --color=auto'
 # media
 alias ytl="youtube-dl -F"   # list available formats
 alias yt="youtube-dl -f 18" # best for mp4
-alias ytm="youtube-dl $1 --extract-a
+alias ytm="youtube-dl $1 --extract-a"
 
 # apt
 alias sourceme="source ~/.profile"      #reload
