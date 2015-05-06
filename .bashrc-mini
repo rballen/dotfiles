@@ -1,0 +1,106 @@
+####################################
+# ~/.bashrc-mini - shortened bashrc and bash_aliases for kali
+#
+# git clone https://github.com/rballen/dotfiles.git
+# wget -O ~/.bashrc https://raw.github.com/rballen/dotfiles/master/.bashrc-mini 
+#
+# ########################################
+# umask 022
+
+
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+HISTCONTROL=ignoreboth   # don't put duplicate lines or lines starting with space history.
+
+export EDITOR=vim
+export VISUAL=vim
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+
+# enable tab completion
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+    PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] $ '
+fi
+
+## ALIAS & FUNCTION DEFINITIONS
+## [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
+
+
+PS1="\[\e[32m\]\$(parse_git_branch)\[\e[34m\]\h:\W \$ \[\e[m\]"
+export PS1
+
+# debugging
+alias whatport='netstat -tulpn'
+alias free='free -m'
+alias myports='netstat –lp --inet'
+alias memhog='ps -elf|awk "{print \$10, \$3, \$4, \$15, \$16}"|sort -nr|head'
+alias stats='dstat -cdnpmgs --top-bio --top-cpu --top-mem'
+alias myip='curl icanhazip.com'
+
+# ls
+alias ll='ls -Alh'                       # l = long list, A = not . or .., h = human readable size
+alias ls='ls -F --color=auto'            # F = append */=>@| to entries(file,dir,sym link)
+alias lsc='ls | wc -l'                    # count files
+alias lsd='ls -d */'
+alias listnew='ls -ltc'
+alias nc='--color=no'
+
+# typos
+alias cd..='cd ..'
+alias ..='cd ..'
+alias clonse='clone'
+
+# app aliases
+alias vi='vim'
+alias less='less -r'
+
+alias grep='grep -ir --color=auto'
+alias fgrep='fgrep -ir --color=auto'
+alias egrep='egrep -ir --color=auto'
+
+# media
+alias ytl="youtube-dl -F"   # list available formats
+alias yt="youtube-dl -f 18" # best for mp4
+alias ytm="youtube-dl $1 --extract-a
+
+# apt
+alias sourceme="source ~/.profile"      #reload
+alias install='sudo apt install'
+alias update='sudo apt update'
+alias upgrade='sudo apt upgrade'
+alias autoremove='sudo apt-get autoremove'
+alias uninstall='sudo apt-get remove --purge'
+alias add='sudo add-apt-repository'
+alias search='apt-cache search'
+alias clean='sudo apt-get clean'
+alias autoclean='sudo apt-get autoclean'
+alias listapps='dpkg --list'
+alias backupapps='dpkg --get-selections > /media/data/Dropbox/Documents/Technology/linux/packages-ubuntu.txt'
+
+
+echo "bashrc"
