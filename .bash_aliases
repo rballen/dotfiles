@@ -144,7 +144,7 @@ elif [ -d /etc/pacman.d ] ; then
    alias orphan='sudo pacman -Qdt'                 #  list all orphaned packages
    alias autoremove="sudo pacman -Rns $(pacman -Qdtq)"  # remove orphaned packages
    alias clean="sudo pacman -Sc"                   # clean cache and outdated packages; better:  sudo cacheclean -v 2
-   alias listapps='pacman -Qe'
+   alias listapps='sudo pacman -Qq | grep -Fv -f <(pacman -Qqm) && sudo pacman -Qqm'
    alias backupapps='pacman -Qe > /home/ra/Dropbox/Apps/backup/packages-arch.txt'
 
 fi
