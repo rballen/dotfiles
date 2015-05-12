@@ -36,9 +36,9 @@ export CATALINA_HOME=/media/data/Tools//apache-tomcat-8.0.15
 # export VAGRANT_HOME=/opt/vagrant/bin
 #ANDROID_HOME=/media/data/Tools/android-sdk-linux/tools
 #ANDROID_PTOOLS=/media/data/Tools/android-sdk-linux/platform-tools
+export GOROOT=/usr/lib/go
 export GOPATH=/media/data/Projects/go
 export PYTHON=python2
-
 # export PATH
 PATH=$NODE_WEBKIT:$JAVA_HOME/bin:$M2_HOME/bin:$ROO_HOME/bin:$ANT_HOME/bin:$GOPATH/bin:$PATH
 #PATH=$JSHINT:$PATH
