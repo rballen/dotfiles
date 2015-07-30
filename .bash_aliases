@@ -1,6 +1,6 @@
 ####################################
 # ~/.bash_aliases
-#
+# use \alias to disable temporarily
 # check with http://www.shellcheck.net/
 # git clone https://github.com/rballen/dotfiles.git
 # wget https://raw.github.com/rballen/dotfiles/master/.bash_aliases
@@ -10,18 +10,23 @@
 # type 'whatalias'  for full list of aliases
 # type 'dowhatnow'  for list of functions
 ####################################
-
+# grep -ir "my phrase" *.txt
+#
+#
 # list all aliases on system
 alias whatalias="alias -p | cut -d= -f1 | cut -d' ' -f2"
-alias newalias="cp /media/data/Project/github/rballen/dotfiles/.bash_aliases ~/"
 
 # debugging
+alias size='df -h'
 alias whatport='netstat -tulpn'
 alias free='free -m'
 alias myports='netstat –lp --inet'
 alias memhog='ps -elf|awk "{print \$10, \$3, \$4, \$15, \$16}"|sort -nr|head'
 alias stats='dstat -cdnpmgs --top-bio --top-cpu --top-mem'
 alias myip='curl icanhazip.com'
+alias ping='ping -c 5'
+alias headers='curl -I'
+alias monitor='gnome-system-monitor'
 
 # distro
 alias whichdistro='cat /etc/*-release'
@@ -30,7 +35,8 @@ alias whichdistro='cat /etc/*-release'
 alias ll='ls -Alh'                       # l = long list, A = not . or .., h = human readable size
 alias ls='ls -F --color=auto'            # F = append */=>@| to entries(file,dir,sym link)
 alias lsc='ls | wc -l'                    # count files
-alias lsd='ls -d */'
+alias lsd='ls -d */'                      # list dirs only
+alias l.='ls -d .*'                       # show hidden files
 #alias l='ls -CF'
 alias listnew='ls -ltc'
 alias nc='--color=no'
@@ -38,58 +44,73 @@ alias nc='--color=no'
 # app aliases
 alias vi='vim'
 alias less='less -r'
+alias newcheat='cheat -e'
+alias style="sassc style.scss style.css"
+alias dimmer="xrandr --output HDMI1 --brightness 0.8"
+alias restclient='java -jar /media/data/Tools/jars/restclient-ui-3.5-jar-with-dependencies.jar &'
 
-#alias grep='grep -ir --color=auto'
-#alias fgrep='fgrep -ir --color=auto'
-#alias egrep='egrep -ir --color=auto'
 
-#terminal helpers
-alias myterm="xfce4-terminal --tab --title=www --tab --title=robuntu"
+### docker
+alias docker-stop='docker rm -v $(docker ps -a -q -f status=exited)'
+#delete dangling images
+alias docker-del='docker rmi $(docker images -q -f dangling=true)'
 
-# files i reference or update a lot
+### grep
+alias grep='grep -ir --color=auto'
+alias fgrep='fgrep -ir --color=auto'
+alias egrep='egrep -ir --color=auto'
+
+
+### files i reference or update a lot
 alias editkeys="haroopad /media/data/Dropbox/Documents/documents/keyboard-shortcuts.md"
 alias openkeys="firefox /media/data/Dropbox/Documents/documents/keyboard-shortcuts.html"
-alias editbash="subl /media/data/Dropbox/Documents/documents/bash.md"
+alias editbash="subl ~/git//media/data/Dropbox/Documents/documents/bash.md"
 alias editcommands="subl /media/data/Dropbox/Documents/documents/commands.md"
-alias editnotes="subl /media/data/Dropbox/Documents/documents/notes.txt"
+alias editnotes="subl /media/data/Dropbox/notes.txt"
 alias editro="subl /media/data/Dropbox/Documents/documents/roResources.json"
 alias editwebdev="subl /media/data/Dropbox/Documents/documents/webdev-resources.md"
-alias editemmet="subl /media/data/Dropbox/Documents/documents/emmet.md"
-alias ffn='firefox-trunk -no-remote -P "nightly"'
-alias monitor='gnome-system-monitor'
 
 
-# sublime text
-alias sublrballen="subl --project /media/data/Dropbox/Apps/sublime/rballen.sublime-project"
-alias subldata="subl --project /media/data/Dropbox/Apps/sublime/data.sublime-project"
-alias sublrobuntu="subl --project /media/data/Dropbox/Apps/sublime/robuntu.local.sublime-project"
+### sublime text
+alias subldot="subl --project ~/.sublime/dot.sublime-project"
+alias subllinux="subl --project ~/.sublime/linux.sublime-project"
+alias subldocker="subl --project ~/.sublime/docker.sublime-project"
+alias sublmaterial="subl --project ~/.sublime/material.sublime-project"
+alias sublom="subl --project ~/.sublime/ombuntu.sublime-project"
+alias sublpublic="subl --project ~/.sublime/public.sublime-project"
+alias sublresources="subl --project ~/.sublime/resources.sublime-project"
 
 
-# utils better-->https://github.com/benlinton/bash-slugify
-alias slug="rename 'y/ /-/' *"            # convert space to dash
-#slug=$(echo $title | sed "s/[\.':]//g;s/ /-/g" | tr 'A-Z' 'a-z')
-alias rmsyms="find . -maxdepth 1 -type l -exec rm -f {} \;"
 
-alias mountiso="sudo mount -o loop -t iso9660 $1 /media/iso"
-alias umountiso="sudo umount -lf /media/iso"
-alias makeiso="sudo dd if=/dev/cdrom of=/media/data/Videos/$1.iso"
 
-alias search="google-chrome $1"
-alias gmobile='google-chrome --disable-web-security'   #used with phonegap
 alias private='encfs -i 5 /media/data/home/.private /home/ra/.private'
 
 # git
 alias gstat='git status -sb'
 alias greset='git fetch --all;git reset --hard origin/master'
 
-# webdev
+### webdev
 alias rip='wget -E -H -k -K -p -U mozilla'      # THE wget that everyone wants :)
-alias cw='compass watch'
-alias cc='compass compile'
+# wget -r -nc -p -k -np --user-agent="Mozilla/5.0 (Windows NT 6.2; rv:22.0) Gecko/20130405 Firefox/23.0" --html-extension --restrict-file-names=windows --domains=example.com example.com http://flattyshadow.com/
+
+#    -r: recursive download
+#    -nc: no-clobber or skip downloads on existing files
+#    -p: get all page requisites to properly display html
+#    -k: convert links to working local files
+#    -np: don’t ascend to parent directory
+#    –user-agent: as AGENT
+#    –html-extension: make sure downloaded files will have its corresponding suffixes
+#    –restrict-file-names: filenames that will also work on windows
+#    –domains: domain/s to be followed
+
 alias bs='bower search'
-alias bid='bower install --save-dev'
-alias nid='npm install --save-dev'
-alias ls-npm='ls ~/.nvm/versions/node/v0.12.2/lib/node_modules/'  #  npm ls -g should be this and not every package
+alias bi='bower install --save'
+alias ni='npm install --save'
+alias ls-node='ls ~/.nvm/versions/node/"$(node --version)"/lib/node_modules/'  # cant read ls npm -g
+alias ls-iojs='ls ~/.nvm/versions/io.js/"$(node --version)"/lib/node_modules/'
+
+alias cyberfox='/home/ra/bin/cyberfox-38.0.6/Cyberfox &'
+
 # media
 alias ytl="youtube-dl -F"   # list available formats
 alias yt="youtube-dl -f 18" # best for mp4
@@ -99,23 +120,31 @@ alias ytm="youtube-dl $1 --extract-audio --audio-format mp3"  #extract mp3
 
 # jars
 alias piggydb='java -jar /media/data/Tools/piggydb-standalone/piggydb-standalone.jar'
-alias jcc='java -jar /media/data/Tools/jcodecollector/jcodecollector.jar -Dawt.useSystemAAFontSettings=o'
+alias jcc='java -jar /media/data/Tools/jcodecollector/jcodecollector.jar -Dderby.system.home=~/.jCodeCollector &'
 
 
 # typos
 alias cd..='cd ..'
 alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
 alias clonse='clone'
 
+
+alias su='sudo -i'
+alias reboot='sudo reboot'
+alias shutdown='sudo shutdown -h now'
+
+## use same .bash_alias for debian based and arch based
 if [ -f /etc/debian_version ] ; then
 
    # xfce voyager (le mellieur) , elementaryOS aliases
 
    alias sourceme="source ~/.profile"      #reload
    alias server="google-chrome http://$HOSTNAME:3000; python -m SimpleHTTPServer 3000"
-   alias install='sudo apt install'
-   alias update='sudo apt update'
-   alias upgrade='sudo apt upgrade'
+   alias install='sudo apt-get install -y'
+   alias update='sudo apt-get update'
+   alias upgrade='sudo apt-get upgrade'
    alias autoremove='sudo apt-get autoremove'
    alias uninstall='sudo apt-get remove --purge'
    alias add='sudo add-apt-repository'
@@ -124,7 +153,6 @@ if [ -f /etc/debian_version ] ; then
    alias autoclean='sudo apt-get autoclean'
    alias listapps='dpkg --list'
    alias backupapps='dpkg --get-selections > /media/data/Dropbox/Documents/Technology/linux/packages-ubuntu.txt'
-   alias restoreapps='dpkg --set-selections < /media/data/Dropbox/Documents/Technology/linux/packages-ubuntu.txt'
 
 elif [ -d /etc/pacman.d ] ; then
 
@@ -144,31 +172,9 @@ elif [ -d /etc/pacman.d ] ; then
    alias orphan='sudo pacman -Qdt'                 #  list all orphaned packages
    alias autoremove="sudo pacman -Rns $(pacman -Qdtq)"  # remove orphaned packages
    alias clean="sudo pacman -Sc"                   # clean cache and outdated packages; better:  sudo cacheclean -v 2
-   alias listapps='sudo pacman -Qq | grep -Fv -f <(pacman -Qqm) && sudo pacman -Qqm'
+   alias listapps='pacman -Qe'
    alias backupapps='pacman -Qe > /home/ra/Dropbox/Apps/backup/packages-arch.txt'
-   
-   # Pacman aliases from arch hq
-   alias pacupg='sudo pacman -Syu'  # Synchronize repos and upgrade packages
-   alias pacdl='pacman -Sw'      # Download specified package(s) as .tar.xz ball
-   alias pacin='sudo pacman -S'     # Install specific package(s) from the repositories
-   alias pacins='sudo pacman -U'    # Install specific package not from the repositories but from a file
-   alias pacre='sudo pacman -R'     # Remove specified package(s), keeping its configuration(s) and dependencies
-   alias pacrem='sudo pacman -Rns' # Remove specified package(s), configuration(s) and unneeded dependencies
-   alias pacrep='pacman -Si'     # Display information about a given package in the repositories
-   alias pacreps='pacman -Ss'    # Search for package(s) in the repositories
-   alias pacloc='pacman -Qi'     # Display information about a given package in the local database
-   alias paclocs='pacman -Qs'    # Search for package(s) in the local database
-   alias paclo="pacman -Qdt"     # List all packages which are orphaned
-   alias pacc="sudo pacman -Scc"    # Clean cache - delete all the package files in the cache
-   alias paclf="pacman -Ql"      # List all files installed by a given package
-   alias pacown="pacman -Qo"     # Show package(s) owning the specified file(s)
-   alias pacexpl="pacman -D --asexp"   # Mark one or more installed packages as explicitly installed
-   alias pacimpl="pacman -D --asdep"   # Mark one or more installed packages as non explicitly installed
 
-   # Additional pacman alias examples
-   alias pacupd='sudo pacman -Sy && sudo abs'   # Update refresh the local package and ABS databases against repositories
-   alias pacinsd='sudo pacman -S --asdeps'      # Install given package(s) as dependencies
-   alias pacmir='sudo pacman -Syy'              # Force refresh of package lists after updating /etc/pacman.d/mirrorlist
-
+fi
 
 echo 'bash_aliases'
