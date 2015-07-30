@@ -1,13 +1,12 @@
 ####################################
 # ~/.bashrc - ever a work in progress
 #
-# check with http://www.shellcheck.net/
 # git clone https://github.com/rballen/dotfiles.git
-# wget https://raw.github.com/rballen/dotfiles/master/.bashrc
+# wget https://raw.githubusercontent.com/rballen/dotfiles/master/.bashrc
 #
 # sudo groupadd robuntu -g 1111; sudo groupadd dev -g 1112; # add new groups
-# sudo usermod -aG robuntu,dev,fuse $USER;   # add $USER to these groups
-# sudo usermod -g dev $USER;                 # change $USER's primary group to dev
+# sudo usermod -aG robuntu,dev,fuse $USER;                  # add $USER to these groups
+# sudo usermod -g dev $USER;                                # change $USER's primary group to dev
 # ########################################
 # umask 022
 
@@ -77,15 +76,6 @@ else
 fi
 unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -104,28 +94,38 @@ fi
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 
-# enable tab completion
+## ALIAS & FUNCTION DEFINITIONS
+[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
+[[ -f ~/.bash_functions ]] && . ~/.bash_functions
+
+# enable programmable completion
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
-    PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] $ '
 fi
 
-## ALIAS & FUNCTION DEFINITIONS
-[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
-[[ -f ~/.bash_functions ]] && . ~/.bash_functions
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
 
 function parse_git_branch {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
 }
 
 PS1="\[\e[32m\]\$(parse_git_branch)\[\e[34m\]\h:\W \$ \[\e[m\]"
+#PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] $ '
 export PS1
-
 export SASSPATH=.    # sublime
+
+export CHEATCOLORS=true
 
 # helps with accessibility bus console errors
 export NO_AT_BRIDGE=1
@@ -144,9 +144,20 @@ export NVM_DIR="$HOME/.nvm"
 source $HOME/.nvm/nvm.sh
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 PATH=$NVM_BIN:$PATH
+export NVM_IOJS_ORG_MIRROR=https://iojs.org/dist
+export PYTHON=python2
 
 # docker
 . ~/.docker-compose
 
+
 echo "bashrc"
 
+export SASS_SPEC_PATH=/home/ra/bin/sass-spec
+export SASS_SASSC_PATH=/home/ra/bin/sassc
+export SASS_LIBSASS_PATH=/home/ra/bin/libsass
+
+export SASSC_HOME=/home/ra/bin/sassc
+
+
+PATH=$SASSC_HOME/bin:$PATH
