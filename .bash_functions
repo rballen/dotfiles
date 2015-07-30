@@ -56,6 +56,8 @@ function overview () {
 
   echo -e '\E[37;44m'"\033[1mother\033[0m"
   echo "mkd (foldername) ---> mkdir dir and cd in"
+  echo "buildIndex  ---> create index.md with folder/file links"
+  echo "slugify ---> remove spaces and set to lowercase"
   echo "sourceme() --> re-source yourself ~/.profile"
   echo "gc ( gitUrl) ---> clones the repo and converts md to html"
   echo "say ( ) ---> clones the repo and converts md to html"
@@ -92,8 +94,51 @@ function mkd() {
   mkdir -p "$@" && cd "$@"
 }
 
+# build inde.md with folder/file links
+function buildIndex(){
+  shopt -s nullglob  # Bash extension, so globs with no matches return empty
+
+   for dir in ./* ; do        # Use "./*", NEVER bare "*"  for file in $1/*; do
+     if [ -d $dir ]; then
+         echo "- [$(basename "$dir")]("$dir"/)" >> index.md
+         for files in $(find "$dir"/ -iname '*.html' -o -iname '*.md' -o -iname '*.pdf' -o -iname '*.scss' ) ; do
+         #for files in $(find -maxdepth 3 "$dir"/ -iname '*.html' -o -iname '*.md' -o -iname '*.scss' ) ; do
+            file=${files##*/}
+           echo "   - ["$file"]("$files")" >> index.md
+         done
+      fi
+   done
+}
 
 
+function slugify () {
+  for file in ./* ; do
+     filename=${file%.*}
+           e=${file##*.}
+    target="$file"
+
+    ## convert to lowercase
+    target=$(echo "$target" | tr A-Z a-z )
+    ## convert underscores to spaces
+    target=$(echo "$target" | tr _ ' ')
+    ## dashes to spaces
+    target=$(echo "$target" | tr - ' ')
+    ## consolidate spaces
+    target=$(echo "$target" | tr -s ' ')
+    ##  remove spaces  adjacent to dashes
+    target=$(echo "$target" | sed 's/\- /-/')
+    target=$(echo "$target" | sed 's/ \-/-/')
+    ## Replace spaces with underscores or dashes
+    target=$(echo "$target" | tr ' ' -)
+
+     if [ "$target" == "$file" ]; then
+        echo "skip: $target"
+      else
+       mv "$file" "$target"
+      # echo "rename: $file -> $target"
+    fi
+  done
+}
 
 # creates folder based on filename and extracts zip into it
 function extractToFolder() {
