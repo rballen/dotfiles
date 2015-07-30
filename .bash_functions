@@ -25,16 +25,10 @@ alias dowhatnow="overview | less"
 
 function overview () {
   echo '--------------------------'
-  echo 'bashmarks -->       list commands for ~/.local/bin/bashmarks'
   echo 'dowhatnow -->       list functions in ~/.bash_functions'
   echo 'whatalias -->       list aliases in ~/.bash_aliases'
-  echo 'rakeys    -->       list all my and snipppet triggers and eventually key bindings'
   echo '--------------------------'
 
-  echo -e '\E[37;44m'"\033[1mstats\033[0m"
-  echo "my_ps ( ) ---> list ps"
-  echo "pp ( ) ---> xxxxx"
-  echo "my_ip ( ) ---> show my ip"
 
   echo -e '\E[37;44m'"\033[1maudio-video\033[0m"
   echo "getMp3 ( videofile ) ---> convert video to 160k cbr mp3"
@@ -48,8 +42,6 @@ function overview () {
 
 
   echo -e '\E[37;44m'"\033[1mfile manipulation\033[0m"
-  echo "noserver( file, cssPreFix, jsPreFix ) ---> replace /css-prefix.css with css/file.css and same for js"
-
   echo "extract( file ) ---> extracts any archive"
   echo "extractToFolder ( )  ---> created folder based on name and extract into it"
   echo "getHtml (file ) ---> convert md to html"
@@ -62,40 +54,16 @@ function overview () {
   echo "prepend (text file) --> add text to begining of every line"
   echo "append (text file) --> add text to end of every line"
 
-  echo -e '\E[37;44m'"\033[1mimage magick\033[0m"
-  echo "rotate ( ) ---> autorotates all JPG's in dir"
-  echo "thumbsx480 ( ) ---> autorotates and resizes all jpg's to max h/w of 450"
-
   echo -e '\E[37;44m'"\033[1mother\033[0m"
-  echo "sourceme() --> re-source yourself bitch ~/.profile"
-  echo "ff ( name ) ---> find a file whose name contains given string"
+  echo "mkd (foldername) ---> mkdir dir and cd in"
+  echo "sourceme() --> re-source yourself ~/.profile"
   echo "gc ( gitUrl) ---> clones the repo and converts md to html"
   echo "say ( ) ---> clones the repo and converts md to html"
   echo "say-translation (language phrase) ---> say-translation es come with me"
 
 }
 
-# list bashmarks' commands
-function bashmarks () {
-  echo -e '\E[37;44m'"\033[1mbashmarks\033[0m"
-  echo 'https://github.com/huyng/bashmarks'
-  echo " s bookmarkname - saves the curr dir as bookmarkname"
-  echo " g bookmarkname - jumps to the that bookmark"
-  echo " g b[TAB] - tab completion is available"
-  echo " p bookmarkname - prints the bookmark"
-  echo " p b[TAB] - tab completion is available"
-  echo " d bookmarkname - deletes the bookmark"
-  echo " d [TAB] - tab completion is available"
-  echo " l - list all bookmarks"
-}
 
-function rakeys () {
-  echo 'ramdhtml ----> sublime-text html, markdown or md file for strapdown snippet'
-  echo 'ratbfluid ----> sublime-text html file for twitter bootstrap fluid standalone page snippet'
-  echo 'raajax ----> sublime-text html file for zurb foundation4 fluid standalone page snippet'
-  echo 'rajq ----> sublime-text html file for jquery document.ready snippet'
-
-}
 
 ########### functions
 function extract () {
@@ -119,19 +87,13 @@ function extract () {
   fi
 }
 
-# to serve files with a server change  "/dir/file.css" to "css/file.css" same for *.js
-function noserver( ) {
-# file = $1; cssPrefix = $2; jsPrefix = $3;
-  // sudo sed -i 's/"\/css/"css/g' $1
-  sed -i 's|$2|"css|g'  $1
-  sed -i 's|$3|"js|g'  $1
-
+# create dir and cd in
+function mkd() {
+  mkdir -p "$@" && cd "$@"
 }
 
-# find a file whose name contains a given string
-ff() {
-    find . -type f -iname '*'$*'*' ;
-}
+
+
 
 # creates folder based on filename and extracts zip into it
 function extractToFolder() {
@@ -167,6 +129,7 @@ function lowercase() {
 }
 
 
+
 function moveUp (){
  folderlist='ls -d */'
  for f in $folderlist
@@ -188,20 +151,7 @@ function removeM(){
    #alias removeM="sudo sed -i 's/^M///g'"
 }
 
-function my_ps() {
-  ps $@ -u $USER -o pid,%cpu,%mem,bsdtime,command ;
-}
 
-function pp() {
-  my_ps f | awk '!/awk/ && $0~var' var=${1:-".*"} ;
-}
-
-function my_ip() {
-    MY_IP=$(/sbin/ifconfig ppp0 | awk '/inet/ { print $2 } ' | \
-sed -e s/addr://)
-    MY_ISP=$(/sbin/ifconfig ppp0 | awk '/P-t-P/ { print $3 } ' | \
-sed -e s/P-t-P://)
-}
 
 # demux - convert audio to 160k mp3
 function getMp3(){
@@ -278,6 +228,11 @@ decrypt (){
   gpg --no-options "$1"
 }
 
+# list git branch and head
+function gitList {
+	git fetch --all
+	git for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)' | sort -k5n -k2M -k3n -k4n | sed 's/refs\/tags\//tag: /g' | sed 's/refs\/heads\///' | sed 's/refs\/remotes\/origin\///' | grep -i "<YOUR NAME>" | uniq
+}
 
 # imagemagick
 
@@ -292,7 +247,29 @@ function thumbs-med (){
   done
 }
 
+# Create a new directory and enter it
+function mkd() {
+	mkdir -p "$@" && cd "$_";
+}
+
+# Create a git.io short URL
+function gitio() {
+	if [ -z "${1}" -o -z "${2}" ]; then
+		echo "Usage: \`gitio slug url\`";
+		return 1;
+	fi;
+	curl -i http://git.io/ -F "url=${2}" -F "code=${1}";
+}
+
 echo 'bash_functions'
+
+# wget -q -U Mozilla -O output.mp3 "http://translate.google.com/translate_tts?ie=UTF-8&tl=en&q=hello+world
+# limit of 100 characters for the "q" parameter, so be careful. The "tl" parameter contains target language.
+
+say() {
+  say() { mplayer "http://translate.google.com/translate_tts?q=$1"; }
+}
+say(){ mplayer -user-agent Mozilla "http://translate.google.com/translate_tts?tl=en&q=$(echo $* | sed 's#\ #\+#g')" > /dev/null 2>&1 ;  }
 
 #####
 # scripts from https://github.com/gotbletu
