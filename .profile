@@ -1,7 +1,6 @@
 ####################################
-# ~/.profile - profile for debian based distros
+# ~/.bash_profile
 #
-# check with http://www.shellcheck.net/
 # git clone https://github.com/rballen/dotfiles.git
 # wget https://raw.github.com/rballen/dotfiles/master/.profile
 #
@@ -25,18 +24,19 @@ fi
 
 # system variables
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 export ANT_HOME=/media/data/Tools/ant-1.9.1
 export NODE_WEBKIT=/media/data/Tools/nwjs-v0.12.1-linux-x64
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=512m"
 export M2_HOME=/media/data/Tools/maven-3.2.3
 export ROO_HOME=/media/data/Tools/spring-roo-1.3.1
 export CATALINA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=256m"
-export CATALINA_HOME=/media/data/Tools//apache-tomcat-8.0.15
+export CATALINA_HOME=/media/data/Tools/apache-tomcat-8.0.15
 #export ATLAS_HOME=/media/data/Tools/atlassian-plugin-sdk
 # export VAGRANT_HOME=/opt/vagrant/bin
 #ANDROID_HOME=/media/data/Tools/android-sdk-linux/tools
 #ANDROID_PTOOLS=/media/data/Tools/android-sdk-linux/platform-tools
-export PHANTOM_HOME=/media/data/Tools/phantomjs-1.9.8-linux-x86_64
+export PHANTOM_HOME=/home/ra/bin/phantomjs-2.0.0-20150528
 export GOROOT=$HOME/bin/go
 export PATH=$PATH:$GOROOT/bin
 export GOPATH=$GOROOT/bin
@@ -51,3 +51,4 @@ PATH=$PHANTOM_HOME/bin:$NODE_WEBKIT:$JAVA_HOME/bin:$M2_HOME/bin:$ROO_HOME/bin:$A
 
 
 echo 'profile'
+export SASS_LIBSASS_PATH="$HOME/bin/libsass"
