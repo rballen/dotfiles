@@ -101,10 +101,25 @@ function buildIndex(){
    for dir in ./* ; do        # Use "./*", NEVER bare "*"  for file in $1/*; do
      if [ -d $dir ]; then
          echo "- [$(basename "$dir")]("$dir"/)" >> index.md
-         for files in $(find "$dir"/ -iname '*.html' -o -iname '*.md' -o -iname '*.pdf' -o -iname '*.scss' ) ; do
-         #for files in $(find -maxdepth 3 "$dir"/ -iname '*.html' -o -iname '*.md' -o -iname '*.scss' ) ; do
+         #for files in $(find "$dir"/ -iname '*.html' -o -iname '*.md' -o -iname '*.pdf' -o -iname '*.scss' ) ; do
+         for files in $(find "$dir"/ -maxdepth 3 -name 'index.html' -o -iname 'readme.md' -o -iname '*.pdf' -o -name 'index.php' -o -iname '*.scss' ) ; do
+          if [[ "$files" =~ "node_modules" ]]; then
+              echo "skipping '$files'";
+          elif  [[ "$files" =~ "bower_components" ]]; then
+              echo "skipping '$files'";
+          else
             file=${files##*/}
-           echo "   - ["$file"]("$files")" >> index.md
+
+            case "$file" in
+              "license.md"|"LICENSE.md")
+                  echo "skiping $file"
+                  ;;
+              *)
+                  echo "   - ["$file"]("$files")" >> index.md
+                  ;;
+            esac
+
+          fi
          done
       fi
    done
