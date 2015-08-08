@@ -97,12 +97,19 @@ function mkd() {
 # build inde.md with folder/file links
 function buildIndex(){
   shopt -s nullglob  # Bash extension, so globs with no matches return empty
+   echo "$PWD" >> index.md
+   echo "---------------------" >> index.md
+   for f in ./* ; do
+      if [ -f $f ]; then
+        echo "- ["$f"]("$f")" >> index.md
+     fi
+   done
 
    for dir in ./* ; do        # Use "./*", NEVER bare "*"  for file in $1/*; do
      if [ -d $dir ]; then
          echo "- [$(basename "$dir")]("$dir"/)" >> index.md
          #for files in $(find "$dir"/ -iname '*.html' -o -iname '*.md' -o -iname '*.pdf' -o -iname '*.scss' ) ; do
-         for files in $(find "$dir"/ -maxdepth 3 -name 'index.html' -o -iname 'readme.md' -o -iname '*.pdf' -o -name 'index.php' -o -iname '*.scss' ) ; do
+         for files in $(find "$dir"/ -maxdepth 3 -name '*.html' -o -iname 'readme.md' -o -iname '*.pdf' -o -name 'index.php' -o -iname '*.scss' ) ; do
           if [[ "$files" =~ "node_modules" ]]; then
               echo "skipping '$files'";
           elif  [[ "$files" =~ "bower_components" ]]; then
