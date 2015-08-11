@@ -29,7 +29,7 @@ export ANT_HOME=/media/data/Tools/ant-1.9.1
 export NODE_WEBKIT=/media/data/Tools/nwjs-v0.12.1-linux-x64
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=512m"
 export M2_HOME=/media/data/Tools/maven-3.2.3
-export ROO_HOME=/media/data/Tools/spring-roo-1.3.1
+export ROO_HOME=/media/data/Tools/spring-roo-2.0.0.M1
 export CATALINA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=256m"
 export CATALINA_HOME=/media/data/Tools/apache-tomcat-8.0.15
 #export ATLAS_HOME=/media/data/Tools/atlassian-plugin-sdk
