@@ -49,7 +49,6 @@ alias style="sassc style.scss style.css"
 alias dimmer="xrandr --output HDMI1 --brightness 0.8"
 alias restclient='java -jar /media/data/Tools/jars/restclient-ui-3.5-jar-with-dependencies.jar &'
 
-
 ### docker
 alias docker-stop='docker rm -v $(docker ps -a -q -f status=exited)'
 #delete dangling images
