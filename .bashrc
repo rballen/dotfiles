@@ -139,8 +139,7 @@ export NO_AT_BRIDGE=1
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 
 
-# NVM NODEJS - added to path on xubuntu 14.04 and v0.10.28
-export NVM_DIR="$HOME/.nvm"
+# NVM IOJS NODEJS 
 source $HOME/.nvm/nvm.sh
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 PATH=$NVM_BIN:$PATH
@@ -150,14 +149,11 @@ export PYTHON=python2
 # docker
 . ~/.docker-compose
 
-
-echo "bashrc"
-
+# libsass
 export SASS_SPEC_PATH=/home/ra/bin/sass-spec
 export SASS_SASSC_PATH=/home/ra/bin/sassc
 export SASS_LIBSASS_PATH=/home/ra/bin/libsass
-
 export SASSC_HOME=/home/ra/bin/sassc
-
-
 PATH=$SASSC_HOME/bin:$PATH
+
+echo "bashrc"
