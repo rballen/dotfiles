@@ -2,7 +2,7 @@
 ####################################
 # ~/.bash_functions - somewhat useful collection of functions - sill working on the media related so don't use them
 #
-# @TODO finish linting check with http://www.shellcheck.net/
+# finish linting check with http://www.shellcheck.net/
 # git clone https://github.com/rballen/dotfiles.git
 # wget https://raw.github.com/rballen/dotfiles/master/.bash_functions
 #
@@ -109,7 +109,7 @@ function buildIndex(){
      if [ -d $dir ]; then
          echo "- [$(basename "$dir")]("$dir"/)" >> index.md
          #for files in $(find "$dir"/ -iname '*.html' -o -iname '*.md' -o -iname '*.pdf' -o -iname '*.scss' ) ; do
-         for files in $(find "$dir"/ -maxdepth 3 -name '*.html' -o -iname 'readme.md' -o -iname '*.pdf' -o -name 'index.php' -o -iname '*.scss' ) ; do
+         for files in $(find "$dir"/ -maxdepth 3 -name '*.html' -o -iname '*.md' -o -iname '*.pdf' -o -name 'index.php' -o -iname '*.scss' ) ; do
           if [[ "$files" =~ "node_modules" ]]; then
               echo "skipping '$files'";
           elif  [[ "$files" =~ "bower_components" ]]; then
