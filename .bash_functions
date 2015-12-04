@@ -2,11 +2,14 @@
 ####################################
 # ~/.bash_functions - somewhat useful collection of functions - sill working on the media related so don't use them
 #
-# finish linting check with http://www.shellcheck.net/
+# @TODO finish linting check with http://www.shellcheck.net/
 # git clone https://github.com/rballen/dotfiles.git
 # wget https://raw.github.com/rballen/dotfiles/master/.bash_functions
 #
 # sourced in ~/.bashrc
+# dirname="${file%/*}"
+# filename: ${file%.*}
+# ext= ${file##*.}
 #
 # type 'whatalias'  for full list of aliases
 # type 'dowhatnow'  as a reminder for all my functions lest i forgive, i mean forget
@@ -57,6 +60,7 @@ function overview () {
   echo -e '\E[37;44m'"\033[1mother\033[0m"
   echo "mkd (foldername) ---> mkdir dir and cd in"
   echo "buildIndex  ---> create index.md with folder/file links"
+  echo "lower-case() --> rename all JPG files to jpg"
   echo "slugify ---> remove spaces and set to lowercase"
   echo "sourceme() --> re-source yourself ~/.profile"
   echo "gc ( gitUrl) ---> clones the repo and converts md to html"
@@ -107,9 +111,10 @@ function buildIndex(){
 
    for dir in ./* ; do        # Use "./*", NEVER bare "*"  for file in $1/*; do
      if [ -d $dir ]; then
-         echo "- [$(basename "$dir")]("$dir"/)" >> index.md
+         printf "\n" >> index.md
+         echo "## [$(basename "$dir")]("$dir"/)" >> index.md
          #for files in $(find "$dir"/ -iname '*.html' -o -iname '*.md' -o -iname '*.pdf' -o -iname '*.scss' ) ; do
-         for files in $(find "$dir"/ -maxdepth 3 -name '*.html' -o -iname '*.md' -o -iname '*.pdf' -o -name 'index.php' -o -iname '*.scss' ) ; do
+         for files in $(find "$dir"/ -maxdepth 3 -name '*.html' -o -iname 'readme.md' -o -iname '*.pdf' -o -name 'index.php' -o -iname '*.scss' ) ; do
           if [[ "$files" =~ "node_modules" ]]; then
               echo "skipping '$files'";
           elif  [[ "$files" =~ "bower_components" ]]; then
@@ -132,33 +137,23 @@ function buildIndex(){
    done
 }
 
-
 function slugify () {
   for file in ./* ; do
-     filename=${file%.*}
-           e=${file##*.}
-    target="$file"
 
-    ## convert to lowercase
-    target=$(echo "$target" | tr A-Z a-z )
-    ## convert underscores to spaces
-    target=$(echo "$target" | tr _ ' ')
-    ## dashes to spaces
-    target=$(echo "$target" | tr - ' ')
-    ## consolidate spaces
-    target=$(echo "$target" | tr -s ' ')
-    ##  remove spaces  adjacent to dashes
-    target=$(echo "$target" | sed 's/\- /-/')
-    target=$(echo "$target" | sed 's/ \-/-/')
-    ## Replace spaces with underscores or dashes
-    target=$(echo "$target" | tr ' ' -)
+    target="$(echo "${file}" | tr [:upper:] [:lower:])"  # lowercase
+    target="$(echo ${target} |tr -d '+=[]{}(),')"        # remove bad chars
 
-     if [ "$target" == "$file" ]; then
-        echo "skip: $target"
-      else
-       mv "$file" "$target"
-      # echo "rename: $file -> $target"
+    if [ -d "$file" ]; then
+        target="$(echo ${target}  | tr -s ' ' '-')"      # for dir change space to -
+    else
+        target="$(echo ${target}  | tr -s ' ' '_')"      # for files squeze space to _
     fi
+
+    if [ "$target" != "$file" ]; then
+      mv "${file}" "${target}"
+     # echo "${file} --> ${target}"
+    fi
+
   done
 }
 
@@ -364,3 +359,10 @@ say-translation() {
         echo $trans
         mplayer -user-agent Mozilla \
         "http://translate.google.com/translate_tts?ie=UTF-8&tl=$lang&q=$trans" > /dev/null 2>&1 ;}
+
+lower-case () {
+   rename 's/\.JPG$/\.jpg/' *
+}
+# rename 's/\.JPG$/\.jpg/' *
+# mogrify -resize 800x *.jpg
+
