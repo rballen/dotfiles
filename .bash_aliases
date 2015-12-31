@@ -49,6 +49,7 @@ alias style="sassc style.scss style.css"
 alias dimmer="xrandr --output HDMI1 --brightness 0.8"
 alias restclient='java -jar /media/data/Tools/jars/restclient-ui-3.5-jar-with-dependencies.jar &'
 
+
 ### docker
 alias docker-stop='docker rm -v $(docker ps -a -q -f status=exited)'
 #delete dangling images
@@ -106,9 +107,7 @@ alias bs='bower search'
 alias bi='bower install --save'
 alias ni='npm install --save'
 alias ls-node='ls ~/.nvm/versions/node/"$(node --version)"/lib/node_modules/'  # cant read ls npm -g
-alias ls-iojs='ls ~/.nvm/versions/io.js/"$(node --version)"/lib/node_modules/'
 
-alias cyberfox='/home/ra/bin/cyberfox-38.0.6/Cyberfox &'
 
 # media
 alias ytl="youtube-dl -F"   # list available formats
