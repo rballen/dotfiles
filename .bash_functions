@@ -45,6 +45,7 @@ function overview () {
 
 
   echo -e '\E[37;44m'"\033[1mfile manipulation\033[0m"
+  echo "buildIndex()  --> write certain files to index.md"
   echo "extract( file ) ---> extracts any archive"
   echo "extractToFolder ( )  ---> created folder based on name and extract into it"
   echo "getHtml (file ) ---> convert md to html"
@@ -147,6 +148,8 @@ function slugify () {
         target="$(echo ${target}  | tr -s ' ' '-')"      # for dir change space to -
     else
         target="$(echo ${target}  | tr -s ' ' '_')"      # for files squeze space to _
+        target="$(echo ${target}  | sed 's/_-_/-/g')"    # replace string _-_ with -; tr goes by char; sed goes by string
+#	target="$(echo ${target}  | sed 's/^[0-9]-//g')"       # for files replace _-_ with single -
     fi
 
     if [ "$target" != "$file" ]; then
