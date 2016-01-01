@@ -52,7 +52,7 @@ alias less='less -r'
 alias newcheat='cheat -e'
 alias style="sassc style.scss style.css"
 alias dimmer="xrandr --output HDMI1 --brightness 0.8"
-alias restclient='java -jar /media/resources/Tools/restclient-ui-3.5-jar-with-dependencies.jar &'
+alias restclient='java -jar /media/data/Tools/jars/restclient-ui-3.5-jar-with-dependencies.jar &'
 
 
 ### docker
@@ -111,7 +111,6 @@ alias ls-node='ls ~/.nvm/versions/node/"$(node --version)"/lib/node_modules/'  #
 alias ytl='youtube-dl -F'     
 alias ytv='youtube-dl --output "$HOME/%(title)s.%(ext)s" --restrict-filenames -f 18/22'
 alias ytm='youtube-dl --output "$HOME/%(title)s.%(ext)s" --restrict-filenames --extract-audio --audio-format mp3 --audio-quality 5'
-
 
 
 # jars
