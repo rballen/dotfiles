@@ -81,9 +81,6 @@ alias sublom="subl --project ~/.sublime/ombuntu.sublime-project"
 alias sublpublic="subl --project ~/.sublime/public.sublime-project"
 alias sublresources="subl --project ~/.sublime/resources.sublime-project"
 
-
-
-
 alias private='encfs -i 5 /media/data/home/.private /home/ra/.private'
 
 # git
@@ -110,10 +107,10 @@ alias ni='npm install --save'
 alias ls-node='ls ~/.nvm/versions/node/"$(node --version)"/lib/node_modules/'  # cant read ls npm -g
 
 
-# youtube-dl
-alias ytl='youtube-dl -F'       # list youtube formats
-alias ytv='youtube-dl --restrict-filenames -f 18/22'    # download video
-alias ytm='youtube-dl --restrict-filenames --extract-audio --audio-format mp3 --audio-quality 5'
+# youtube-dl: list (ytl), video(ytv), music(ytm)
+alias ytl='youtube-dl -F'     
+alias ytv='youtube-dl --output "$HOME/%(title)s.%(ext)s" --restrict-filenames -f 18/22'
+alias ytm='youtube-dl --output "$HOME/%(title)s.%(ext)s" --restrict-filenames --extract-audio --audio-format mp3 --audio-quality 5'
 
 
 
