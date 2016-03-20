@@ -27,6 +27,7 @@ alias myip='curl icanhazip.com'
 alias ping='ping -c 5'
 alias headers='curl -I'
 alias monitor='gnome-system-monitor'
+alias myps='ps -eo pid,cmd,%cpu,%mem,stat'
 
 # distro
 alias whichdistro='cat /etc/*-release'
