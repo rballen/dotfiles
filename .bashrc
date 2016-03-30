@@ -1,14 +1,6 @@
-####################################
-# ~/.bashrc - ever a work in progress
-#
-# git clone https://github.com/rballen/dotfiles.git
-# wget https://raw.githubusercontent.com/rballen/dotfiles/master/.bashrc
-#
-# sudo groupadd robuntu -g 1111; sudo groupadd dev -g 1112; # add new groups
-# sudo usermod -aG robuntu,dev,fuse $USER;                  # add $USER to these groups
-# sudo usermod -g dev $USER;                                # change $USER's primary group to dev
-# ########################################
-# umask 022
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
 # If not running interactively, don't do anything
 case $- in
@@ -26,11 +18,6 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
-HISTCONTROL=ignoreboth   # don't put duplicate lines or lines starting with space history.
-
-export EDITOR=vim
-export VISUAL=vim
-export BROWSER=google-chrome
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -50,7 +37,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -76,37 +63,6 @@ else
 fi
 unset color_prompt force_color_prompt
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    # alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    # alias grep='grep --color=auto'
-    # alias fgrep='fgrep --color=auto'
-    # alias egrep='egrep --color=auto'
-fi
-
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-
-## ALIAS & FUNCTION DEFINITIONS
-[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
-[[ -f ~/.bash_functions ]] && . ~/.bash_functions
-
-# enable programmable completion
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -116,44 +72,60 @@ xterm*|rxvt*)
     ;;
 esac
 
-function parse_git_branch {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
-}
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
 
-PS1="\[\e[32m\]\$(parse_git_branch)\[\e[34m\]\h:\W \$ \[\e[m\]"
-#PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] $ '
-export PS1
-export SASSPATH=.    # sublime
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
 
-export CHEATCOLORS=true
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# helps with accessibility bus console errors
-export NO_AT_BRIDGE=1
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 
-# https://github.com/huyng/bashmarks
-# git clone git://github.com/huyng/bashmarks.git; cd bashmarks; make install
-# cd ~/ ; wget https://raw.githubusercontent.com/rballen/dotfiles/master/.sdirs
-. ~/.local/bin/bashmarks.sh
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-## RUBY & GEMS
-PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 
-# NVM IOJS NODEJS 
-source $HOME/.nvm/nvm.sh
-[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
-PATH=$NVM_BIN:$PATH
-export NVM_IOJS_ORG_MIRROR=https://iojs.org/dist
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
 export PYTHON=python2
 
-# docker
-. ~/.docker-compose
+export CHROME_DEVEL_SANDBOX=/opt/google/chrome-unstable/chrome-sandbox
 
-# libsass
-export SASS_SPEC_PATH=/home/ra/bin/sass-spec
-export SASS_SASSC_PATH=/home/ra/bin/sassc
-export SASS_LIBSASS_PATH=/home/ra/bin/libsass
-export SASSC_HOME=/home/ra/bin/sassc
-PATH=$SASSC_HOME/bin:$PATH
+# https://github.com/huyng/bashmarks
+source ~/.local/bin/bashmarks.sh
 
-echo "bashrc"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
