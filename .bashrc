@@ -121,7 +121,7 @@ fi
 
 export PYTHON=python2
 
-export CHROME_DEVEL_SANDBOX=/opt/google/chrome-unstable/chrome-sandbox
+export CHROME_DEVEL_SANDBOX=/opt/google/chrome-beta/chrome-sandbox
 
 # https://github.com/huyng/bashmarks
 source ~/.local/bin/bashmarks.sh
