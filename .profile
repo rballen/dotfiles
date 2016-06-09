@@ -33,11 +33,12 @@ export ANT_HOME=/media/data/Tools/ant-1.9.1
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=512m"
 # -Xms256m -Xmx512m
 export M2_HOME=/media/data/Tools/maven-3.3.3
-export ROO_HOME=/media/data/Tools/spring-roo-1.3.1.RELEASE
-export CATALINA_HOME=/media/data/Tools/apache-tomcat-8.0.26
+export ROO_HOME=/media/data/Tools/spring-roo-2.0.0.M2
+export CATALINA_HOME=/media/data/Tools/tomcat-8.0.27
+export IDEA_HOME=/home/ra/bin/idea-15.0.3/bin
 
-PATH=$JAVA_HOME/bin:$M2_HOME/bin:$ANT_HOME/bin:$PATH
+PATH=$JAVA_HOME/bin:$M2_HOME/bin:$ANT_HOME/bin:$IDEA_HOME:$PATH
 
 export SASS_LIBSASS_PATH="$HOME/bin/libsass"
-
+export IBUS_ENABLE_SYNC_MODE=1
 echo 'profile'
