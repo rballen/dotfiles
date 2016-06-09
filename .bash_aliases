@@ -4,7 +4,7 @@
 # check with http://www.shellcheck.net/
 # git clone https://github.com/rballen/dotfiles.git
 # wget https://raw.github.com/rballen/dotfiles/master/.bash_aliases
-#
+# for filename in *.mp4; do mv "$filename" "02-ui_$filename"; done;
 # sourced in ~/.bashrc
 #
 # type 'whatalias'  for full list of aliases
@@ -17,6 +17,7 @@
 alias whatalias="alias -p | cut -d= -f1 | cut -d' ' -f2"
 
 # debugging
+alias logs='sudo glogg &'
 alias size='df -h'
 alias whatport='netstat -tulpn'
 alias free='free -m'
@@ -63,6 +64,7 @@ alias docker-del='docker rmi $(docker images -q -f dangling=true)'
 
 
 
+
 ### files i reference or update a lot
 alias editkeys="haroopad /media/data/Dropbox/Documents/documents/keyboard-shortcuts.md"
 alias openkeys="firefox /media/data/Dropbox/Documents/documents/keyboard-shortcuts.html"
@@ -77,10 +79,9 @@ alias editwebdev="subl /media/data/Dropbox/Documents/documents/webdev-resources.
 alias subldot="subl --project ~/.sublime/dot.sublime-project"
 alias subllinux="subl --project ~/.sublime/linux.sublime-project"
 alias subldocker="subl --project ~/.sublime/docker.sublime-project"
-alias sublmaterial="subl --project ~/.sublime/material.sublime-project"
-alias sublom="subl --project ~/.sublime/ombuntu.sublime-project"
 alias sublpublic="subl --project ~/.sublime/public.sublime-project"
-alias sublresources="subl --project ~/.sublime/resources.sublime-project"
+alias sublwww="subl --project ~/.sublime/www.sublime-project"
+
 
 alias private='encfs -i 5 /media/data/home/.private /home/ra/.private'
 
@@ -109,7 +110,7 @@ alias ls-node='ls ~/.nvm/versions/node/"$(node --version)"/lib/node_modules/'  #
 
 
 # youtube-dl: list (ytl), video(ytv), music(ytm)
-alias ytl='youtube-dl -F'     
+alias ytl='youtube-dl -F'
 alias ytv='youtube-dl --output "$HOME/%(title)s.%(ext)s" --restrict-filenames -f 18/22'
 alias ytm='youtube-dl --output "$HOME/%(title)s.%(ext)s" --restrict-filenames --extract-audio --audio-format mp3 --audio-quality 5'
 
