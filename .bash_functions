@@ -8,8 +8,9 @@
 #
 # sourced in ~/.bashrc
 # dirname="${file%/*}"
-# filename: ${file%.*}
-# ext= ${file##*.}
+# file="$(basename "$fullfile")"
+# ext="${filename##*.}"
+# filename="${filename%.*}"
 #
 # type 'whatalias'  for full list of aliases
 # type 'dowhatnow'  as a reminder for all my functions lest i forgive, i mean forget
@@ -45,6 +46,7 @@ function overview () {
 
 
   echo -e '\E[37;44m'"\033[1mfile manipulation\033[0m"
+  echo "shrinkpdf(input.pdf output.pdf)  --> shrink pdf file size"
   echo "buildIndex()  --> write certain files to index.md"
   echo "extract( file ) ---> extracts any archive"
   echo "extractToFolder ( )  ---> created folder based on name and extract into it"
@@ -70,9 +72,16 @@ function overview () {
 
 }
 
-
-
 ########### functions
+
+# shrinkpdf(input.pdf output.pdf)
+function shrinkpdf () {
+ gs -dNOPAUSE -dQUIET -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen  -dEmbedAllFonts=true \
+   -dSubsetFonts=true -dColorImageDownsampleType=/Bicubic -dColorImageResolution=72 -dGrayImageDownsampleType=/Bicubic \
+    -dGrayImageResolution=72 -dMonoImageDownsampleType=/Bicubic -dMonoImageResolution=72 -sOutputFile=$2 $1
+}
+
+
 function extract () {
   if [ -f "$1" ] ; then
     case "$1" in
@@ -304,7 +313,7 @@ function gitList {
 alias rotate='jhead -autorot *.JPG'
 # x480
 function thumbs-med (){
-  filelist=`ls | grep -i '.jpg'`
+  filelist=`ls | grep -i --include \*.jpg --include \*.jpeg`
   mkdir -p thumbs
   for f in $filelist
   do
