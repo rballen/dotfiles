@@ -29,10 +29,11 @@ alias ping='ping -c 5'
 alias headers='curl -I'
 alias monitor='gnome-system-monitor'
 alias myps='ps -eo pid,cmd,%cpu,%mem,stat'
+alias mynmap='nmap 192.168.1.0/24'
 
-# distro
+# distro and repos
 alias whichdistro='cat /etc/*-release'
-
+alias listppas='grep ^[^#] /etc/apt/sources.list /etc/apt/sources.list.d/*'
 # ls
 alias ll='ls -Alh'                       # l = long list, A = not . or .., h = human readable size
 alias ls='ls -F --color=auto'            # F = append */=>@| to entries(file,dir,sym link)
@@ -62,27 +63,6 @@ alias docker-stop='docker rm -v $(docker ps -a -q -f status=exited)'
 #delete dangling images
 alias docker-del='docker rmi $(docker images -q -f dangling=true)'
 
-
-
-
-### files i reference or update a lot
-alias editkeys="haroopad /media/data/Dropbox/Documents/documents/keyboard-shortcuts.md"
-alias openkeys="firefox /media/data/Dropbox/Documents/documents/keyboard-shortcuts.html"
-alias editbash="subl ~/git//media/data/Dropbox/Documents/documents/bash.md"
-alias editcommands="subl /media/data/Dropbox/Documents/documents/commands.md"
-alias editnotes="subl /media/data/Dropbox/notes.txt"
-alias editro="subl /media/data/Dropbox/Documents/documents/roResources.json"
-alias editwebdev="subl /media/data/Dropbox/Documents/documents/webdev-resources.md"
-
-
-### sublime text
-alias subldot="subl --project ~/.sublime/dot.sublime-project"
-alias subllinux="subl --project ~/.sublime/linux.sublime-project"
-alias subldocker="subl --project ~/.sublime/docker.sublime-project"
-alias sublpublic="subl --project ~/.sublime/public.sublime-project"
-alias sublwww="subl --project ~/.sublime/www.sublime-project"
-
-
 alias private='encfs -i 5 /media/data/home/.private /home/ra/.private'
 
 # git
@@ -109,10 +89,12 @@ alias ni='npm install --save'
 alias ls-node='ls ~/.nvm/versions/node/"$(node --version)"/lib/node_modules/'  # cant read ls npm -g
 
 
-# youtube-dl: list (ytl), video(ytv), music(ytm)
+# youtube-dl: list (ytl), video(ytv), music(ytm) youtube-dl -U (update)
 alias ytl='youtube-dl -F'
-alias ytv='youtube-dl --output "$HOME/%(title)s.%(ext)s" --restrict-filenames -f 18/22'
-alias ytm='youtube-dl --output "$HOME/%(title)s.%(ext)s" --restrict-filenames --extract-audio --audio-format mp3 --audio-quality 5'
+alias ytv='youtube-dl --no-playlist -i -w --prefer-ffmpeg -o "~/%(title)s.%(ext)s" --restrict-filenames -f 18/22 --verbose \
+ --embed-thumbnail --write-thumbnail'
+alias ytm='youtube-dl --no-playlist -i -w --prefer-ffmpeg -o "~/%(title)s.%(ext)s" --restrict-filenames --audio-format mp3 \
+--audio-quality 4 --verbose --embed-thumbnail --write-thumbnail  -x'
 
 
 # jars
@@ -158,10 +140,7 @@ elif [ -d /etc/pacman.d ] ; then
    alias sourceme="source ~/.bash_profile"      #reload
    alias server="google-chrome http://$HOSTNAME:4000; python3 -m http.server 4000"
    alias upgradeall='yaourt -Syua'
-   alias update='sudo pacman -Syy'
    alias upgrade='sudo pacman -Syu'
-   alias sync='sudo pacman -Syyu'
-   alias upgradeaur='yaourt -Syu --aur'
    alias install='yaourt -S'
    alias uninstall='sudo pacman -Rns'
    alias search='yaourt -Ss'                       #  searching  packages' names and descriptions
