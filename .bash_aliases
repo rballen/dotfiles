@@ -56,6 +56,7 @@ alias newcheat='cheat -e'
 alias style="sassc style.scss style.css"
 alias dimmer="xrandr --output HDMI1 --brightness 0.8"
 alias restclient='java -jar /media/data/Tools/jars/restclient-ui-3.5-jar-with-dependencies.jar &'
+alias upload="sftp username@server.com:/path/to/upload/directory
 
 
 ### docker
