@@ -1,59 +1,62 @@
-# rballen
-# ~/.bash_aliases
-# wget -O ~/.bash_aliases https://raw.github.com/rballen/dotfiles/master/.bash_aliases-rpi
-########################################
-
-# list all aliases on system
+## packages
 alias whatalias="alias -p | cut -d= -f1 | cut -d' ' -f2"
-alias sourceme="source ~/.profile"      #reload
 
-# ls 
-alias ll='ls -Alh'                            # l = long list, A = not . or .., h = human readable size
-alias ls='ls -F'                              # F = append */=>@| to entries(file,dir,sym link)
-alias lsd='ls -d */'
+alias install='sudo apt-get install -y'
+alias update='sudo apt-get update'
+alias upgrade='sudo apt-get upgrade'
+alias autoremove='sudo apt-get autoremove'
+alias uninstall='sudo apt-get remove --purge'
+alias add='sudo add-apt-repository'
+alias search='apt-cache search'
+alias clean='sudo apt-get clean'
+alias autoclean='sudo apt-get autoclean'
+
+## ls
+alias ll='ls -Alh'                       # l = long list, A = not . or .., h = human readable size
+alias ls='ls -F --color=auto'            # F = append */=>@| to entries(file,dir,sym link)
+alias lsc='ls | wc -l'                    # count files
+alias lsd='ls -d */'                      # list dirs only
+alias l.='ls -d .*'                       # show hidden files
 #alias l='ls -CF'
 alias listnew='ls -ltc'
-alias nocolor='ls --color=never'
-alias less='less -r'  
-alias lsnc='ls --color=no'
-alias lsdnc='ls -d --color=no  */'
+alias nc='--color=no'
 
-# app aliases
+## grep
+alias grep='grep -ir --color=auto'
+alias fgrep='fgrep -ir --color=auto'
+alias egrep='egrep -ir --color=auto'
+
+## app aliases
 alias vi='vim'
-alias free='free -m'
-alias grep='grep -ir'                       
+alias less='less -r'
 
+### docker
+alias docker-stop='docker rm -v $(docker ps -a -q -f status=exited)'
+#delete dangling images
+alias docker-del='docker rmi $(docker images -q -f dangling=true)'
 
-# lil helpers
-alias space2dash="rename 'y/ /-/' *"           # convert space to dash
+### webdev
 alias rip='wget -E -H -k -K -p -U mozilla'      # THE wget that everyone wants :)
+# wget -r -nc -p -k -np --user-agent="Mozilla/5.0 (Windows NT 6.2; rv:22.0) Gecko/20130405 Firefox/23.0" --html-extension --restrict-file-names=windows --domains=example.com example.com http://flattyshadow.com/
 
+#    -r: recursive download
+#    -nc: no-clobber or skip downloads on existing files
+#    -p: get all page requisites to properly display html
+#    -k: convert links to working local files
+#    -np: don’t ascend to parent directory
+#    –user-agent: as AGENT
+#    –html-extension: make sure downloaded files will have its corresponding suffixes
+#    –restrict-file-names: filenames that will also work on windows
+#    –domains: domain/s to be followed
 
-# debugging
+## debugging
+alias size='df -h'
 alias whatport='netstat -tulpn'
 alias free='free -m'
 alias myports='netstat –lp --inet'
-alias memhog='ps -elf|awk "{print \$10, \$3, \$4, \$15, \$16}"|sort -nr|head'
+alias stats='dstat -cdnpmgs --top-bio --top-cpu --top-mem'
 alias myip='curl icanhazip.com'
+alias myps='ps -eo pid,cmd,%cpu,%mem,stat'
+alias mynmap='nmap 192.168.1.0/24'
 
-# typos
-alias cd..='cd ..'
-alias ..='cd ..'
-alias clonse='clone'
-
-# package management for ubuntu
-alias update='sudo apt-get update'
-alias updatepi='sudo rpi-update'
-alias upgrade='sudo apt-get upgrade'
-alias install='sudo apt-get install'
-alias uninstall='apt-get purge'    
-alias clean='sudo apt-get clean'
-alias autoremove='sudo apt-get autoremove'
-alias add='sudo add-apt-repository'
-alias search='apt-cache search'
-alias listpack='dpkg --list'
-alias backuppack='dpkg --get-selections > /media/resources/Dropbox/packages-lsb_release.txt'
-alias restorepack='dpkg --set-selections < /media/resources/Dropbox/packages-lsb_release.txt'
-
-
-echo '.bash_aliases'
+echo 'bash_aliases'
