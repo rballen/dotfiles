@@ -56,7 +56,6 @@ alias newcheat='cheat -e'
 alias style="sassc style.scss style.css"
 alias dimmer="xrandr --output HDMI1 --brightness 0.8"
 alias restclient='java -jar /media/data/Tools/jars/restclient-ui-3.5-jar-with-dependencies.jar &'
-alias upload="sftp username@server.com:/path/to/upload/directory
 
 
 ### docker
@@ -88,7 +87,7 @@ alias bs='bower search'
 alias bi='bower install --save'
 alias ni='npm install --save'
 alias ls-node='ls ~/.nvm/versions/node/"$(node --version)"/lib/node_modules/'  # cant read ls npm -g
-
+alias node-globabl-versions='npm -g --depth 0 ls'
 
 # youtube-dl: list (ytl), video(ytv), music(ytm) youtube-dl -U (update)
 alias ytl='youtube-dl -F'
