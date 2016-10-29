@@ -114,6 +114,17 @@ alias su='sudo -i'
 alias reboot='sudo reboot'
 alias shutdown='sudo shutdown -h now'
 
+
+## systemD
+
+alias statusd='sudo systemctl status '
+alias startd='sudo systemctl start '
+alias stopd='sudo systemctl stop '
+alias enabled='sudo systemctl enable '
+alias restartd='sudo systemctl restart '
+alias reloadd='sudo systemctl daemon-reload'
+
+
 ## use same .bash_alias for debian based and arch based
 if [ -f /etc/debian_version ] ; then
 
