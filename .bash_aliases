@@ -56,6 +56,7 @@ alias newcheat='cheat -e'
 alias style="sassc style.scss style.css"
 alias dimmer="xrandr --output HDMI1 --brightness 0.8"
 alias restclient='java -jar /media/data/Tools/jars/restclient-ui-3.5-jar-with-dependencies.jar &'
+alias rotate='jhead -autorot *.JPG'
 
 
 ### docker
@@ -117,11 +118,11 @@ alias shutdown='sudo shutdown -h now'
 
 ## systemD
 
-alias statusd='sudo systemctl status '
-alias startd='sudo systemctl start '
-alias stopd='sudo systemctl stop '
-alias enabled='sudo systemctl enable '
-alias restartd='sudo systemctl restart '
+alias statusd='sudo systemctl status'
+alias startd='sudo systemctl start'
+alias stopd='sudo systemctl stop'
+alias enabled='sudo systemctl enable'
+alias restartd='sudo systemctl restart'
 alias reloadd='sudo systemctl daemon-reload'
 
 
