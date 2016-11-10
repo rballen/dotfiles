@@ -33,7 +33,6 @@ function overview () {
   echo 'whatalias -->       list aliases in ~/.bash_aliases'
   echo '--------------------------'
 
-
   echo -e '\E[37;44m'"\033[1maudio-video\033[0m"
   echo "getMp3 ( videofile ) ---> convert video to 160k cbr mp3"
   echo "getMp4 ( videofile ) ---> convert video to mp4 - leave original sizing"
@@ -41,35 +40,31 @@ function overview () {
   echo "mountiso ( name.iso ) ---> mount iso to /mnt/iso dvd to iso"
   echo "umountiso ( name.iso ) ---> convert dvd to iso"
   echo "ripdvd ( name.mp4 ) ---> rip the dvd to mp4"
-  echo "rotate ( ) ---> autorotates all JPGs in dir"
   echo "thumbs-med ( ) ---> autorotates and resizes all jpgs to max h/w of 450"
-
 
   echo -e '\E[37;44m'"\033[1mfile manipulation\033[0m"
   echo "shrinkpdf(input.pdf output.pdf)  --> shrink pdf file size"
-  echo "buildIndex()  --> write certain files to index.md"
   echo "extract( file ) ---> extracts any archive"
   echo "extractToFolder ( )  ---> created folder based on name and extract into it"
   echo "getHtml (file ) ---> convert md to html"
   echo "getAllHtml ( ) ---> convert all md files in dir to html"
   echo "encrypt ( file) ---> encrypt file using gpg"
   echo "decrypt ( file) ---> decrypt file using gpg"
-  echo "lowercase ( ) ---> mv's all files in dir to lowercase"
+  echo "lower-files ( ) ---> mv's all files in dir to lowercase"
+  echo "lower-dirs ()  --> change all dirs to lowercaser"
   echo "removeM ( file ) ---> removes the damned ^M"
   echo "moveUp (extension ) ---> mv all ./**/*.extension ./"
   echo "prepend (text file) --> add text to begining of every line"
   echo "append (text file) --> add text to end of every line"
+  echo "slugify ---> remove spaces and set to lowercase"
 
   echo -e '\E[37;44m'"\033[1mother\033[0m"
   echo "mkd (foldername) ---> mkdir dir and cd in"
   echo "buildIndex  ---> create index.md with folder/file links"
-  echo "lower-case() --> rename all JPG files to jpg"
-  echo "slugify ---> remove spaces and set to lowercase"
-  echo "sourceme() --> re-source yourself ~/.profile"
-  echo "gc ( gitUrl) ---> clones the repo and converts md to html"
   echo "say ( ) ---> clones the repo and converts md to html"
   echo "say-translation (language phrase) ---> say-translation es come with me"
-
+  echo "short-url( url )  ---> Create a git.io short URL"
+  echo "gitList () --> list git branch and head"
 }
 
 ########### functions
@@ -81,45 +76,34 @@ function shrinkpdf () {
     -dGrayImageResolution=72 -dMonoImageDownsampleType=/Bicubic -dMonoImageResolution=72 -sOutputFile=$2 $1
 }
 
-function extract {
- if [ -z "$1" ]; then
-    # display usage if no parameters given
-    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
- else
-    if [ -f $1 ] ; then
-        # NAME=${1%.*}
-        # mkdir $NAME && cd $NAME
-        case $1 in
-          *.tar.bz2)   tar xvjf ../$1    ;;
-          *.tar.gz)    tar xvzf ../$1    ;;
-          *.tar.xz)    tar xvJf ../$1    ;;
-          *.lzma)      unlzma ../$1      ;;
-          *.bz2)       bunzip2 ../$1     ;;
-          *.rar)       unrar x -ad ../$1 ;;
-          *.gz)        gunzip ../$1      ;;
-          *.tar)       tar xvf ../$1     ;;
-          *.tbz2)      tar xvjf ../$1    ;;
-          *.tgz)       tar xvzf ../$1    ;;
-          *.zip)       unzip ../$1       ;;
-          *.Z)         uncompress ../$1  ;;
-          *.7z)        7z x ../$1        ;;
-          *.xz)        unxz ../$1        ;;
-          *.exe)       cabextract ../$1  ;;
-          *)           echo "extract: '$1' - unknown archive method" ;;
+
+function extract () {
+  if [ -f "$1" ] ; then
+    case "$1" in
+          *.tar.bz2) tar xjf "$1" ;;
+          *.tar.gz) tar xzf "$1" ;;
+          *.bz2) bunzip2 "$1" ;;
+          *.rar) unrar e "$1" ;;
+          *.gz) gunzip "$1" ;;
+          *.tar) tar xf "$1" ;;
+          *.tbz2) tar xjf "$1" ;;
+          *.tgz) tar xzf "$1" ;;
+          *.xz) tar xf "$1" ;;
+          *.zip) unzip "$1" ;;
+          *.Z) uncompress "$1" ;;
+          *.7z) 7z x "$1" ;;
+          *) echo "'$1' cannot be extracted " ;;
         esac
     else
-        echo "$1 - file does not exist"
-    fi
-fi
-}
-
-# create dir and cd in
-function mkd() {
-  mkdir -p "$@" && cd "$@"
+    echo "'$1' is not a valid file"
+  fi
 }
 
 # build inde.md with folder/file links
 function buildIndex(){
+  # If set, the pattern "**" used in a pathname expansion context will
+  # match all files and zero or more directories and subdirectories.
+  # shopt -s globstar
   shopt -s nullglob  # Bash extension, so globs with no matches return empty
    echo "$PWD" >> index.md
    echo "---------------------" >> index.md
@@ -179,6 +163,33 @@ function slugify () {
   done
 }
 
+
+# renames fils in lowercase
+function lower-files() {
+  for file in * ; do
+    if [[ -f $file ]]; then
+      name="$(echo ${file} | tr [:upper:] [:lower:])"
+       if [ "$file" != "$name" ]; then
+         echo "${file} ${name}"    
+         mv ${file} ${name}  
+      fi     
+  fi
+  done
+}
+
+# renames directories in lowercase
+function lower-dirs() {
+  for file in * ; do
+    if [[ -d $file ]]; then
+      name="$(echo ${file} | tr [:upper:] [:lower:])"
+       if [ "$file" != "$name" ]; then
+         echo "${file} ${name}"    
+         mv ${file} ${name}  
+      fi     
+  fi
+  done
+}
+
 # creates folder based on filename and extracts zip into it
 function extractToFolder() {
  for f in *.zip
@@ -191,25 +202,6 @@ function extractToFolder() {
         unzip "$f"  -d "${f%.*}"
       fi
    done
-}
-
-# move filenames to lowercase
-function lowercase() {
-    for file ; do
-        filename=${file##*/}
-        case "$filename" in
-        */*) dirname==${file%/*} ;;
-        *) dirname=.;;
-        esac
-        nf=$(echo $filename | tr A-Z a-z)
-        newname="${dirname}/${nf}"
-        if [ "$nf" != "$filename" ]; then
-            mv "$file" "$newname"
-            echo "lowercase: $file --> $newname"
-        else
-            echo "lowercase: $file not changed."
-        fi
-    done
 }
 
 
@@ -308,7 +300,7 @@ function encrypt (){
 }
 
 #udecrypt same file
-decrypt (){
+function decrypt (){
   gpg --no-options "$1"
 }
 
@@ -320,7 +312,6 @@ function gitList {
 
 # imagemagick
 
-alias rotate='jhead -autorot *.JPG'
 # x480
 function thumbs-med (){
   filelist=`ls | grep -i --include \*.jpg --include \*.jpeg`
@@ -337,7 +328,7 @@ function mkd() {
 }
 
 # Create a git.io short URL
-function gitio() {
+function short-url() {
 	if [ -z "${1}" -o -z "${2}" ]; then
 		echo "Usage: \`gitio slug url\`";
 		return 1;
@@ -345,31 +336,32 @@ function gitio() {
 	curl -i http://git.io/ -F "url=${2}" -F "code=${1}";
 }
 
-echo 'bash_functions'
+
 
 # wget -q -U Mozilla -O output.mp3 "http://translate.google.com/translate_tts?ie=UTF-8&tl=en&q=hello+world
 # limit of 100 characters for the "q" parameter, so be careful. The "tl" parameter contains target language.
 
-say() {
-  say() { mplayer "http://translate.google.com/translate_tts?q=$1"; }
-}
-say(){ mplayer -user-agent Mozilla "http://translate.google.com/translate_tts?tl=en&q=$(echo $* | sed 's#\ #\+#g')" > /dev/null 2>&1 ;  }
+# say() {
+#   say() { mplayer "http://translate.google.com/translate_tts?q=$1"; }
+# }
+# say(){ mplayer -user-agent Mozilla "http://translate.google.com/translate_tts?tl=en&q=$(echo $* | sed 's#\ #\+#g')" > /dev/null 2>&1 ;  }
 
 #####
 # scripts from https://github.com/gotbletu
 
 
 # http://www.youtube.com/watch?v=UhVKuAozSMc
-say() {
+function say() {
         # limit to 100 character or less
         # language code: http://developers.google.com/translate/v2/using_rest#language-params
         # useage: say <language code> <phase>
         # example: say es come with me
   mplayer -user-agent Mozilla \
         "http://translate.google.com/translate_tts?ie=UTF-8&tl="$1"&q=$(echo "$@" \
-        | cut -d ' ' -f2- | sed 's/ /\+/g')" > /dev/null 2>&1 ;}
+        | cut -d ' ' -f2- | sed 's/ /\+/g')" > /dev/null 2>&1 ;
+}
 
-say-translation() {
+function say-translation() {
         # by: gotbletu
         # requires: http://www.soimort.org/google-translate-cli/
         # limit to 100 character or less
@@ -380,11 +372,16 @@ say-translation() {
         trans=$(translate {=$lang} "$(echo "$@" | cut -d ' ' -f2- | sed 's/ /\+/g')" )
         echo $trans
         mplayer -user-agent Mozilla \
-        "http://translate.google.com/translate_tts?ie=UTF-8&tl=$lang&q=$trans" > /dev/null 2>&1 ;}
-
-lower-case () {
-   rename 's/\.JPG$/\.jpg/' *
+        "http://translate.google.com/translate_tts?ie=UTF-8&tl=$lang&q=$trans" > /dev/null 2>&1 ;
 }
+
+
 # rename 's/\.JPG$/\.jpg/' *
 # mogrify -resize 800x *.jpg
 
+# lower-files () {
+#    rename 's/\.JPG$/\.jpg/' *
+# }
+
+
+echo 'bash_functions'
