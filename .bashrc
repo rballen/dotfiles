@@ -53,6 +53,8 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+
+
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
@@ -68,6 +70,26 @@ xterm*|rxvt*)
 *)
     ;;
 esac
+
+# colors
+# attribute_code: 0=none 1=bold 4=underscore
+# text_color_code: 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+# background_color_code: 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white 49=default
+#
+# \e[attribute code;text color codem
+# \e[attribute code;text color code;background color codem    echo -e "\e[1;34m hello world \e[0m"
+blue='\e[0;34m'
+green='\e[0;32m'
+red='\e[49;38;5;207m'
+reset='\e[0m'
+# background  \e[48;5;colorm
+# text:   \e[38;5;colorm
+# echo -e "${green}Welcome \e[5;32;47m $USER \n${endColor}"
+PS1='\u@\h:\w\$ '
+#PS1="${blue}\u@\h:\w\$ ${reset}"     # c1
+#PS1="${green}\u@\h:\w\$ ${reset}"    # c2
+#PS1="${red}\u@\h:\w\$ ${reset}"      # rpi2
+
 
 # enable color support of ls and also add handy aliases
 # if [ -x /usr/bin/dircolors ]; then
