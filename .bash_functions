@@ -312,16 +312,19 @@ function gitList {
 
 # imagemagick
 
-# x480
 function thumbs-med (){
-  filelist=`ls | grep -i --include \*.jpg --include \*.jpeg`
-  mkdir -p thumbs
+  filelist = 'ls | grep -i --include \*.jpg .'
+  #filelist=`ls | grep -i --include \*.jpg --include \*.jpeg`
+  #mkdir -p thumbs
   for f in $filelist
   do
     convert $f -auto-orient -resize x480 -unsharp 0x.5 ./thumbs/${f%.*}_x480.jpg
   done
 }
 
+function all-jpg (){
+  mogrify -format jpg *.png
+}
 # Create a new directory and enter it
 function mkd() {
 	mkdir -p "$@" && cd "$_";
@@ -384,4 +387,9 @@ function say-translation() {
 # }
 
 
+# mogrify  -resize x800  *.jpg
+# mogrify -auto-orient -thumbnail x800 -unsharp 0x.5  '*.jpg'
+# x480
+# 
+# 
 echo 'bash_functions'
