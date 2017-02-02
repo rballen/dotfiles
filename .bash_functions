@@ -1,3 +1,4 @@
+
 #!/bin/bash
 ####################################
 # ~/.bash_functions - somewhat useful collection of functions - sill working on the media related so don't use them
@@ -152,7 +153,7 @@ function slugify () {
     else
         target="$(echo ${target}  | tr -s ' ' '_')"      # for files squeze space to _
         target="$(echo ${target}  | sed 's/_-_/-/g')"    # replace string _-_ with -; tr goes by char; sed goes by string
-#	target="$(echo ${target}  | sed 's/^[0-9]-//g')"       # for files replace _-_ with single -
+# target="$(echo ${target}  | sed 's/^[0-9]-//g')"       # for files replace _-_ with single -
     fi
 
     if [ "$target" != "$file" ]; then
@@ -306,37 +307,34 @@ function decrypt (){
 
 # list git branch and head
 function gitList {
-	git fetch --all
-	git for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)' | sort -k5n -k2M -k3n -k4n | sed 's/refs\/tags\//tag: /g' | sed 's/refs\/heads\///' | sed 's/refs\/remotes\/origin\///' | grep -i "<YOUR NAME>" | uniq
+  git fetch --all
+  git for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)' | sort -k5n -k2M -k3n -k4n | sed 's/refs\/tags\//tag: /g' | sed 's/refs\/heads\///' | sed 's/refs\/remotes\/origin\///' | grep -i "<YOUR NAME>" | uniq
 }
 
 # imagemagick
 
+# x480
 function thumbs-med (){
-  filelist = 'ls | grep -i --include \*.jpg .'
-  #filelist=`ls | grep -i --include \*.jpg --include \*.jpeg`
-  #mkdir -p thumbs
+  filelist=`ls | grep -i --include \*.jpg --include \*.jpeg`
+  mkdir -p thumbs
   for f in $filelist
   do
     convert $f -auto-orient -resize x480 -unsharp 0x.5 ./thumbs/${f%.*}_x480.jpg
   done
 }
 
-function all-jpg (){
-  mogrify -format jpg *.png
-}
 # Create a new directory and enter it
 function mkd() {
-	mkdir -p "$@" && cd "$_";
+  mkdir -p "$@" && cd "$_";
 }
 
 # Create a git.io short URL
 function short-url() {
-	if [ -z "${1}" -o -z "${2}" ]; then
-		echo "Usage: \`gitio slug url\`";
-		return 1;
-	fi;
-	curl -i http://git.io/ -F "url=${2}" -F "code=${1}";
+  if [ -z "${1}" -o -z "${2}" ]; then
+    echo "Usage: \`gitio slug url\`";
+    return 1;
+  fi;
+  curl -i http://git.io/ -F "url=${2}" -F "code=${1}";
 }
 
 
@@ -386,10 +384,7 @@ function say-translation() {
 #    rename 's/\.JPG$/\.jpg/' *
 # }
 
+#
 
-# mogrify  -resize x800  *.jpg
-# mogrify -auto-orient -thumbnail x800 -unsharp 0x.5  '*.jpg'
-# x480
-# 
-# 
+
 echo 'bash_functions'
