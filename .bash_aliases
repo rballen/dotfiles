@@ -1,4 +1,3 @@
-
 ####################################
 # ~/.bash_aliases
 # use \alias to disable temporarily
@@ -23,7 +22,6 @@ alias size='df -h'
 alias whatport='netstat -tulpn'
 alias free='free -m'
 alias myports='netstat –lp --inet'
-alias memtop10='ps aux | awk "{print \$2, \$4, \$11}" | sort -k2rn | head -n 10'
 alias memhog='ps -elf|awk "{print \$10, \$3, \$4, \$15, \$16}"|sort -nr|head'
 alias stats='dstat -cdnpmgs --top-bio --top-cpu --top-mem'
 alias myip='curl icanhazip.com'
@@ -47,9 +45,9 @@ alias listnew='ls -ltc'
 alias nc='--color=no'
 
 ### grep
-alias grep='grep -ir --color=auto'
-alias fgrep='fgrep -ir --color=auto'
-alias egrep='egrep -ir --color=auto'
+#alias grep='grep -ir --color=auto'
+#alias fgrep='fgrep -ir --color=auto'
+#alias egrep='egrep -ir --color=auto'
 
 # app aliases
 alias vi='vim'
@@ -96,8 +94,8 @@ alias node-globabl-versions='npm -g --depth 0 ls'
 alias ytl='youtube-dl -F'
 alias ytv='youtube-dl --no-playlist -i -w --prefer-ffmpeg -o "~/%(title)s.%(ext)s" --restrict-filenames -f 18/22 --verbose \
  --embed-thumbnail --write-thumbnail'
-alias ytm='youtube-dl --no-playlist -i -w --prefer-ffmpeg -o "~/%(title)s.%(ext)s" --restrict-filenames --audio-format mp3 \
---audio-quality 4 --verbose --embed-thumbnail --write-thumbnail  -x'
+alias ytm='youtube-dl -x --embed-thumbnail --audio-format mp3 --no-playlist -i -w --prefer-ffmpeg -o "~/%(title)s.%(ext)s" --restrict-filenames  \
+--audio-quality 4 --verbose --write-thumbnail'
 
 
 # jars
@@ -119,7 +117,7 @@ alias shutdown='sudo shutdown -h now'
 
 
 ## systemD
-
+alias listd='systemctl list-unit-files --type=service'
 alias statusd='sudo systemctl status'
 alias startd='sudo systemctl start'
 alias stopd='sudo systemctl stop'
@@ -142,6 +140,7 @@ if [ -f /etc/debian_version ] ; then
    alias uninstall='sudo apt-get remove --purge'
    alias add='sudo add-apt-repository'
    alias search='apt-cache search'
+   alias info='dpkg -s'
    alias clean='sudo apt-get clean'
    alias autoclean='sudo apt-get autoclean'
    alias listapps='dpkg --list'
