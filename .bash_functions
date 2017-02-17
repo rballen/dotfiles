@@ -57,6 +57,7 @@ function overview () {
   echo "prepend (text file) --> add text to begining of every line"
   echo "append (text file) --> add text to end of every line"
   echo "slugify ---> remove spaces and set to lowercase"
+  echo "www ---> folders to 775, files to 664, group to www-data "
 
   echo -e '\E[37;44m'"\033[1mother\033[0m"
   echo "mkd (foldername) ---> mkdir dir and cd in"
@@ -161,6 +162,13 @@ function slugify () {
     fi
 
   done
+}
+
+# directories to 755 (drwxr-xr-x),  files to 644 (-rw-r--r--), owner www-data
+function www () {
+  sudo chgrp -R www-data .
+  find . -type d -exec sudo chmod 775 {} \;
+  find . -type f -exec sudo chmod 664 {} \;
 }
 
 
