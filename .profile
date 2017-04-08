@@ -49,3 +49,4 @@ export GOPATH=/home/ra/Projects/go
 export SASS_LIBSASS_PATH="$HOME/bin/libsass"
 export IBUS_ENABLE_SYNC_MODE=1
 echo 'profile'
+export GTK2_RC_FILES=/home/ra/.gtkrc-2.0  # for anki
