@@ -1,0 +1,21 @@
+127.0.0.1       localhost
+127.0.0.2       acer
+127.0.1.1       acer acer.local
+127.0.1.1       resources.local
+127.0.1.1       cdn.local
+127.0.1.1       ui.local
+127.0.1.1       ombuntu.local
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+# start 100 end 254
+192.168.1.100    prime prime.local
+192.168.1.110    c1 c1.local
+192.168.1.120    rpi2 rpi2.local
+192.168.1.130    rpi3 rpi3.local
+192.168.1.140    c2  c2.local 
