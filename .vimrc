@@ -12,8 +12,13 @@ set shiftwidth=3		" Columns per autoindent
 
 syntax enable			" Syntax highlighting!
 
+set softtabstop=3
+set expandtab
 
 "set background=dark		" The Solarized dark theme ("light" works too")
-colorscheme dracula   	" Use Solarized
+colorscheme dracula   	" Use heroku
 
 set t_Co=16			" Set terminal colors to 16 instead of 8.
+
+
+
