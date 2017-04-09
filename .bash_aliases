@@ -141,7 +141,7 @@ if [ -f /etc/debian_version ] ; then
    alias uninstall='sudo apt-get remove --purge'
    alias add='sudo add-apt-repository'
    alias search='apt-cache search'
-   alias info='dpkg -s'
+   alias info='apt-cache show'
    alias clean='sudo apt-get clean'
    alias autoclean='sudo apt-get autoclean'
    alias listapps='dpkg --list'
