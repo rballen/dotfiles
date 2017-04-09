@@ -41,9 +41,8 @@ export CATALINA_HOME=/media/data/Tools/tomcat-8.0.27
 export ROBO_HOME=/opt/robomongo
 PATH=$JAVA_HOME/bin:$M2_HOME/bin:$ANT_HOME/bin:$ROBO_HOME/bin:$PATH
 
-
-export GOPATH=/home/ra/Projects/go
-#export PATH=$PATH:/usr/local/go/bin
+#export GOPATH=/home/ra/Projects/go
+export PATH=$PATH:/usr/local/go/bin
 
 
 export SASS_LIBSASS_PATH="$HOME/bin/libsass"
