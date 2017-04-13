@@ -131,7 +131,7 @@ alias reloadd='sudo systemctl daemon-reload'
 if [ -f /etc/debian_version ] ; then
 
    # xfce voyager (le mellieur) , elementaryOS aliases
-
+   alias testinstall="sudo apt-get install --dry-run"
    alias sourceme="source ~/.profile"      #reload
    alias server="google-chrome http://$HOSTNAME:3000; python -m SimpleHTTPServer 3000"
    alias install='sudo apt-get install -y'
