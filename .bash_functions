@@ -142,6 +142,44 @@ function buildIndex(){
    done
 }
 
+function listFiles () {
+shopt -s nullglob
+for file in *.html
+do
+  echo "- ["$file"](./"$file")" 
+done
+
+}
+
+function example2 () {
+  #$( ... ) runs a shell command and inserts its output at that point in the command line
+
+  for file in Data/*.txt
+  do
+      for ((i = 0; i < 3; i++))
+      do
+          name=${file##*/}
+          base=${name%.txt}
+          ./MyProgram.exe "$file" Logs/"${base}_Log$i.txt"
+      done
+  done
+}
+
+
+function example () {
+  _base="/jail/.conf"
+  _dfiles="${base}/nginx/etc/conf/*.conf"
+   
+  for f in $_dfiles
+  do
+          lb2file="/tmp/${f##*/}.$$"   #tmp file
+          sed 's/Load_Balancer-1/Load_Balancer-2/' "$f" > "${lb2file}"   # update signature 
+          scp "${lb2file}" nginx@lb2.nixcraft.net.in:${f}   # scp updated file to lb2
+          rm -f "${lb2file}"
+  done
+
+}
+
 function slugify () {
   for file in ./* ; do
 
