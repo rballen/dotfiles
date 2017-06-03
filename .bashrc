@@ -9,13 +9,9 @@ case $- in
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
 HISTCONTROL=ignoreboth
-
 # append to the history file, don't overwrite it
 shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
 
@@ -71,54 +67,35 @@ xterm*|rxvt*)
     ;;
 esac
 
-# colors
-# attribute_code: 0=none 1=bold 4=underscore
-# text_color_code: 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
-# background_color_code: 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white 49=default
-#
-# \e[attribute code;text color codem
-# \e[attribute code;text color code;background color codem    echo -e "\e[1;34m hello world \e[0m"
-blue='\e[0;34m'
-green='\e[0;32m'
-red='\e[49;38;5;207m'
-reset='\e[0m'
-# background  \e[48;5;colorm
-# text:   \e[38;5;colorm
-# echo -e "${green}Welcome \e[5;32;47m $USER \n${endColor}"
-PS1='\u@\h:\w\$ '
-#PS1="${blue}\u@\h:\w\$ ${reset}"     # c1
-#PS1="${green}\u@\h:\w\$ ${reset}"    # c2
-#PS1="${red}\u@\h:\w\$ ${reset}"      # rpi2
+# colors and prompt
+reset="\e[0m"
+whitefg="\e[97m"
+blackfg="\e[30m"
+bluebg="\e[48;5;20m"
+ltbluebg="\e[48;5;27m"
+greenbg="\e[48;5;22m"
+ltgreenbg="\e[48;5;41m"
+raspbg="\e[48;5;198m"
+ltraspbg="\e[48;5;207m"
+orangebg="\e[48;5;202m"
 
+PS1='\u@\h:\w\$ '                                 # laptop    
+    
+# PS1="${greenbg}${whitefg}\u@\h:\w\$ ${reset}"     # c2.local   
+# PS1="${ltgreenbg}${blackfg}\u@\h:\w\$ ${reset}"   # c1.local
 
-# enable color support of ls and also add handy aliases
-# if [ -x /usr/bin/dircolors ]; then
-#     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-#     alias ls='ls --color=auto'
-#     #alias dir='dir --color=auto'
-#     #alias vdir='vdir --color=auto'
+# PS1="${raspbg}${whitefg}\u@\h:\w\$ ${reset}"      # rpi3.local             
+# PS1="${ltraspbg}${blackfg}\u@\h:\w\$ ${reset}"    # rpi2.local   
+       
+# PS1="${orangebg}${blackfg}\u@\h:\w\$ ${reset}"    # do
 
-#     alias grep='grep --color=auto'
-#     alias fgrep='fgrep --color=auto'
-#     alias egrep='egrep --color=auto'
-# fi
-
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# # some more ls aliases
-# alias ll='ls -alF'
-# alias la='ls -A'
-# alias l='ls -CF'
+# PS1="${bluebg}${$whitefg}\u@\h:\w\$ ${reset}"     # ?
+# PS1="${ltbluebg}${$blackfg}\u@\h:\w\$ ${reset}"   # ?
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
