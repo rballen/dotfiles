@@ -53,7 +53,6 @@ alias nc='--color=no'
 # app aliases
 alias vi='vim'
 alias less='less -r'
-alias newcheat='cheat -e'
 alias style="sassc style.scss style.css"
 alias dimmer="xrandr --output HDMI1 --brightness 0.8"
 alias restclient='java -jar /media/data/Tools/jars/restclient-ui-3.5-jar-with-dependencies.jar &'
@@ -134,18 +133,17 @@ if [ -f /etc/debian_version ] ; then
 
    alias sourceme="source ~/.profile"      #reload
    alias server="google-chrome http://$HOSTNAME:3000; python -m SimpleHTTPServer 3000"
-   alias install='sudo apt-get install -y'
-   alias update='sudo apt-get update'
-   alias upgrade='sudo apt-get upgrade'
-   alias autoremove='sudo apt-get autoremove'
-   alias uninstall='sudo apt-get remove --purge'
+   alias install='sudo apt install'
+   alias update='sudo apt update'
+   alias upgrade='sudo apt upgrade -y'
+   alias fullupgrade='sudo apt full-upgrade'
+   alias autoremove='sudo apt autoremove'
+   alias uninstall='sudo apt purge'
+   alias search='apt search'
+   alias listapps='apt list --installed  > packages-ubuntu.txt'
    alias add='sudo add-apt-repository'
-   alias search='apt-cache search'
-   alias info='apt-cache show'
    alias clean='sudo apt-get clean'
    alias autoclean='sudo apt-get autoclean'
-   alias listapps='dpkg --list'
-   alias backupapps='dpkg --get-selections > /media/data/Dropbox/Documents/Technology/linux/packages-ubuntu.txt'
 
 elif [ -d /etc/pacman.d ] ; then
 
