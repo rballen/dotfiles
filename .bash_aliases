@@ -135,8 +135,7 @@ if [ -f /etc/debian_version ] ; then
    alias server="google-chrome http://$HOSTNAME:3000; python -m SimpleHTTPServer 3000"
    alias install='sudo apt install'
    alias update='sudo apt update'
-   alias upgrade='sudo apt upgrade -y'
-   alias fullupgrade='sudo apt full-upgrade'
+   alias upgrade='sudo apt-get dist-upgrade'
    alias autoremove='sudo apt autoremove'
    alias uninstall='sudo apt purge'
    alias search='apt search'
