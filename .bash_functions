@@ -368,6 +368,15 @@ function thumbs-med (){
   done
 }
 
+function img-med (){
+  mkdir -p thumbs
+
+   for f in *.JPEG
+    do
+      convert $f -auto-orient -resize x800 -unsharp 0x.5 ./thumbs/${f%.*}.jpg
+    done
+}
+
 function all-jpg (){
   mogrify -format jpg *.png
 }
